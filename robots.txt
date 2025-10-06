@@ -1,1 +1,1 @@
-Sitemap: https://github.com/larissa-k-g/MedBioInfo-Blog/sitemap.xml
+Sitemap: https://larissa-k-g.github.io/MedBioInfo-Blog/sitemap.xml
