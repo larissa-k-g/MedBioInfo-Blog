@@ -164,7 +164,19 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Getting started</figcaption>
 </figure>
 </div>
-<p>First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview. To actually safe and publish go into the Terminal again and <code>$git add --all</code> <code>$git commit -m "Remember to leave a little comment of what the changes that you made were"</code> <code>$git push origin main</code> In case of this error: “Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing” try: <code>$git pull origin main</code> This should merge the remote updates with your local copy, then try push again. <code>$git push origin main</code>.</p>
+<p>First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.</p>
+<strong>!Pro Tip: </strong>To make paragraphs end the line with two spaces.
+<p style="margin-left:2em;">
+For an indentation try <code>&lt;p style="margin-left:2em;"&gt; Your indented text &lt;/p&gt;</code>
+</p>
+<hr>
+<p>To actually safe and publish go into the Terminal again and<br>
+<code>$git add --all</code><br>
+<code>$git commit -m "Remember to leave a little comment of what the changes that you made were"</code><br>
+<code>$git push origin main</code><br>
+In case of this error: “Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing” try:<br>
+<code>$git pull origin main</code> This should merge the remote updates with your local copy, then try push again.<br>
+<code>$git push origin main</code>.</p>
 <p>And there you go - Your first Quarto Blog Entry!</p>
 
 
