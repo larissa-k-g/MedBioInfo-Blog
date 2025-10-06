@@ -1,1 +1,27 @@
-/* css styles */
+/* Header / site title slightly darker */
+.quarto-title-block h1 {
+  color: #111111;  /* darker than body text */
+}
+
+/* Optional: other headings */
+h2, h3, h4, h5, h6 {
+  color: #111111;
+}
+
+/* Background stays light */
+body {
+  color: #000000;             /* dark gray for body text, easier to read than pure black */
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+}
+/* Links: visible but not too harsh */
+a {
+  color: #327ddf90; /* bright blue links */
+  text-decoration: underline;
+}
+
+/* Optional: code blocks or quotes */
+pre, code, blockquote {
+  background-color: #4c91ebc9; /* subtle gray background */
+  color: #222222;
+}
