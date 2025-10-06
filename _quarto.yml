@@ -14,8 +14,8 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      - lux
+      - morph
     css: styles.css
 execute:
   freeze: auto
