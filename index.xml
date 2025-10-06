@@ -43,7 +43,7 @@
 
 
 
-<p>First create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery.</p>
+<p>First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview. To actually safe and publish go into the Terminal again and</p>
 
 
 

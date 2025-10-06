@@ -4,14 +4,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this blog"
+    "text": "About this blog\nMy name is Larissa and I am a PhD student at Stockholm University. As part of Prof. Eva Hedlunds research team I concentrate on understanding the motorneuron disease ALS. Most of you probably know it from the “Ice-bucket-challenge” or from the famous physicist Stephen Hawking. On this blog you can follow along if you want to get to know more abut ongoing research in ALS and neuroscience in general. You will also get to see my first attemps to manage different bioinformatic techniques."
   },
   {
     "objectID": "posts/Introduction/index.html",
     "href": "posts/Introduction/index.html",
     "title": "How to make a Quarto Blog",
     "section": "",
-    "text": "First create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery."
+    "text": "First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview. To actually safe and publish go into the Terminal again and"
   },
   {
     "objectID": "index.html",
