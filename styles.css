@@ -14,11 +14,6 @@ body {
   font-family: "Inter", sans-serif;
   line-height: 1.5;
 }
-/* Links: visible but not too harsh */
-a {
-  color: #327ddf90; /* bright blue links */
-  text-decoration: underline;
-}
 
 /* Optional: code blocks or quotes */
 pre, code, blockquote {
