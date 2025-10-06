@@ -25,13 +25,20 @@
     "href": "posts/Introduction/index.html",
     "title": "How to make a Quarto Blog",
     "section": "",
-    "text": "First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview. To actually safe and publish go into the Terminal again and"
+    "text": "Getting started\n\n\nFirst, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview. To actually safe and publish go into the Terminal again and $git add --all $git commit -m \"Remember to leave a little comment of what the changes that you made were\" $git push origin main In case of this error: “Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing” try: $git pull origin main This should merge the remote updates with your local copy, then try push again. $git push origin main.\nAnd there you go - Your first Quarto Blog Entry!"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Applied-Bioinfo-Blog",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a Quarto Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nLarissa Kahnwald\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nOct 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Getting started with a Quarto Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nLarissa Kahnwald\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nOct 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/getting-started-with-quarto-blogs/index.html",
+    "href": "posts/getting-started-with-quarto-blogs/index.html",
+    "title": "Getting started with a Quarto Blog",
+    "section": "",
+    "text": "Getting started\n\n\nFirst, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview. To actually safe and publish go into the Terminal again and $git add --all $git commit -m \"Remember to leave a little comment of what the changes that you made were\" $git push origin main In case of this error: “Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing” try: $git pull origin main This should merge the remote updates with your local copy, then try push again. $git push origin main.\nAnd there you go - Your first Quarto Blog Entry!"
   }
 ]

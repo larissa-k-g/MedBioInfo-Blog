@@ -13,5 +13,8 @@
   },
   "posts/Introduction/index.qmd": {
     "index.html": "b252e67d"
+  },
+  "posts/getting-started-with-quarto-blogs/index.qmd": {
+    "index.html": "772ed00d"
   }
 }
