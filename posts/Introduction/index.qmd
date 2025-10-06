@@ -1,0 +1,7 @@
+---
+title: "How to make a Quarto Blog"
+author: "Larissa Kahnwald"
+date: "2025-10-06"
+categories: [news]
+---
+First create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery.
