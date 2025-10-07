@@ -39,8 +39,8 @@ To ensure that your analysis are easily reproducible, indepentent of when and wh
 Two common platforms to download container images from are Dockerhub and Seqera.
 
 1. Dockerhub provides the first tool that we want to install: VCFtool, a software created for manipulation and quering of VCF files. It's like a Swiss Army knife for VCF files - filter, summerize, analyze qenetic/sequencing data.
-To install it use: 
-`$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1``
+To install it use:  
+`$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1`
 <p style="margin-left:2em;"> -> apptainer is the software that is called, pull is the command to download/fetch something. "vcftools_0.1.16.1.sif" is the name of the container image. docker:// is te dockerhub registry that we are pulling our software from. "biocontainers/vcftools..." is the user profile that created the container and the name of the container you want to use.</p> 
 
 2. Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those reposetories. Change the Container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.
