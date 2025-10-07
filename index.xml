@@ -46,27 +46,37 @@
 </p></li>
 <li>To add a new tool/dependency you need to be in the project’s folder. Then you can simply use the command:<br>
 <code>$pixi add Quarto</code><br>
-e.g.&nbsp;to add Quarto <code>&lt;p style="margin-left:2em;"&gt; -&gt; to see if it was installed properly you can either test it with the command</code>$pixi run quarto –help<code>or go back to the .toml file and find that Quarto has been added as a dependency.&lt;/p&gt;</code><br>
-</li>
+e.g.&nbsp;to add Quarto
+<p style="margin-left:2em;">
+-&gt; to see if it was installed properly you can either test it with the command <code>$pixi run quarto --help</code>or go back to the .toml file and find that Quarto has been added as a dependency.
+</p></li>
 <li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
-<code>&lt;p style="margin-left:2em;"&gt; -&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc. &lt;/p&gt;</code> <strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
+
+<p style="margin-left:2em;">
+-&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc.
+</p>
+<strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
 <li>To use your tool you can use:<br>
-<code>$pixi run quarto --help" **Pro-Tip:** You can also enter the environment using</code><img src="https://latex.codecogs.com/png.latex?pixi%20shell%60.%20This%20allows%20you%20to%20forget%20about%20pixi%20and%20just%20run%20your%20commands%20as%20%22normally%22%20e.g.%20%60">quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
+<code>$pixi run quarto --help</code><br>
+<strong>Pro-Tip:</strong> You can also enter the environment using <code>$pixi shell</code>. This allows you to forget about pixi and just run your commands as “normally” e.g.&nbsp;`$quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
 </ol>
 </section>
 <section id="container-images" class="level4">
 <h4 class="anchored" data-anchor-id="container-images">Container images</h4>
 <p>To ensure that your analysis are easily reproducible, indepentent of when and where they are run you can use container images. These are containers that have been created by other people. Here we are using Apptainer as a container, as it is already installed on the course server, however Docker was also recommended. Two common platforms to download container images from are Dockerhub and Seqera.</p>
 <ol type="1">
-<li><p>Dockerhub provides the first tool that we want to install: VCFtool, a software created for manipulation and quering of VCF files. It’s like a Swiss Army knife for VCF files - filter, summerize, analyze qenetic/sequencing data. To install it use: <code>$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1``</code></p>
+<li>Dockerhub provides the first tool that we want to install: VCFtool, a software created for manipulation and quering of VCF files. It’s like a Swiss Army knife for VCF files - filter, summerize, analyze qenetic/sequencing data. To install it use: `$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1``
 <p style="margin-left:2em;">
-</p><p>-&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is te dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.</p>
-<p></p>
-<p>`</p></li>
-<li><p>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those reposetories. Change the Container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</p></li>
-<li><p>Click on get Container, then copy paste the text from the website to the your system:<br>
-<code>$apptainer pull fastqc:0.12.1.sif oras://community.wave.seqera.io/library/vcftools:0.1.17--b541aa8d9f9213f9</code> <code>&lt;p style="margin-left:2em;"&gt; oras is used, as this is the registry that is being pulled from in this case&lt;/p&gt;</code> Here, we are pulling from the oras registry rather then docker which is why we use oras:// isntead.</p></li>
-<li><p>To run use: <code>$apptainer exec fastqc:0.12.1.sif vcftools --version</code></p></li>
+-&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is te dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.
+</p></li>
+<li>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those reposetories. Change the Container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</li>
+<li>Click on get Container, then copy paste the text from the website to the your system:<br>
+<code>$apptainer pull fastqc:0.12.1.sif oras://community.wave.seqera.io/library/vcftools:0.1.17--b541aa8d9f9213f9</code>
+<p style="margin-left:2em;">
+oras is used, as this is the registry that is being pulled from in this case
+</p>
+Here, we are pulling from the oras registry rather then docker which is why we use oras:// isntead.</li>
+<li>To run use: <code>$apptainer exec fastqc:0.12.1.sif vcftools --version</code></li>
 </ol>
 
 
