@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -181,10 +210,12 @@ ul.task-list li input[type="checkbox"] {
 </p></li>
 <li>To add a new tool/dependency you need to be in the project’s folder. Then you can simply use the command:<br>
 <code>$pixi add Quarto</code><br>
-e.g.&nbsp;to add Quarto <code>&lt;p style="margin-left:2em;"&gt; -&gt; to see if it was installed properly you can either test it with the command</code>$pixi quarto –help<code>or go back to the .toml file and find that Quarto has been added as a dependency.&lt;/p&gt;</code><br>
+e.g.&nbsp;to add Quarto <code>&lt;p style="margin-left:2em;"&gt; -&gt; to see if it was installed properly you can either test it with the command</code>$pixi run quarto –help<code>or go back to the .toml file and find that Quarto has been added as a dependency.&lt;/p&gt;</code><br>
 </li>
 <li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
 <code>&lt;p style="margin-left:2em;"&gt; -&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc. &lt;/p&gt;</code> <strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
+<li>To use your tool you can use:<br>
+<code>$pixi run quarto --help" **Pro-Tip:** You can also enter the environment using</code><span class="math inline">\(pixi shell`. This allows you to forget about pixi and just run your commands as "normally" e.g. `\)</span>quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
 </ol>
 
 
