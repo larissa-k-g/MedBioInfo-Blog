@@ -60,28 +60,6 @@ e.g.&nbsp;to add Quarto <code>&lt;p style="margin-left:2em;"&gt; -&gt; to see if
   <pubDate>Tue, 07 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>This is a post with executable code.</p>
-
-
-
- ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/</guid>
-  <pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
   <title>Getting started with a Quarto Blog</title>
   <dc:creator>Larissa Kahnwald</dc:creator>
   <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/getting-started-with-quarto-blogs/</link>
@@ -118,6 +96,28 @@ In case of this error: “Updates were rejected because the remote contains work
   <category>news</category>
   <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/getting-started-with-quarto-blogs/</guid>
   <pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is a post with executable code.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/</guid>
+  <pubDate>Sun, 05 Oct 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Welcome To My Blog</title>
