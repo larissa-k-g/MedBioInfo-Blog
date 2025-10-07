@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Larissa Kahnwald">
-<meta name="dcterms.date" content="2025-10-06">
+<meta name="dcterms.date" content="2025-10-07">
 
-<title>Getting started with a Quarto Blog – Applied-Bioinfo-Blog</title>
+<title>Work environments and Containerss – Applied-Bioinfo-Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -119,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Getting started with a Quarto Blog</h1>
+      <h1 class="title">Work environments and Containerss</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
               </div>
@@ -139,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 6, 2025</p>
+        <p class="date">October 7, 2025</p>
       </div>
     </div>
     
@@ -164,6 +193,30 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Pixi</figcaption>
 </figure>
 </div>
+<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
+<ol type="1">
+<li>To start, install pixie run this in your command line:<br>
+<code>$curl -fsSL https://pixi.sh/install.sh | sh</code></li>
+<li>Create a new project directory</li>
+<li>Add conda-forge and bioconda channels using -c flag:<br>
+<code>$pixi init folder_name -c conda-forge -c bioconda</code><br>
+
+<p style="margin-left:2em;">
+-&gt; Channels will give Pixi a source from were to install the dependencies. It’s like telling Pixi which shop to go to to buy all the tools you need.
+</p></li>
+<li>In your new folder you can now find a file - <strong>pixi.toml</strong>
+<p style="margin-left:2em;">
+-&gt; .toml contains all the important information about your environment. It tells you the channels you have added, the name you have given the environment, which operating system, in which version it has been optimized for. Here we can also define different tasks and a list of all the tools/dependencies that have been installed in this environment, after they have been added.
+</p></li>
+<li>To add a new tool/dependency you need to be in the project’s folder. Then you can simply use the command:<br>
+<code>$pixi add Quarto</code><br>
+e.g.&nbsp;to add Quarto <code>&lt;p style="margin-left:2em;"&gt; -&gt; to see if it was installed properly you can either test it with the command</code>$pixi run quarto –help<code>or go back to the .toml file and find that Quarto has been added as a dependency.&lt;/p&gt;</code><br>
+</li>
+<li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
+<code>&lt;p style="margin-left:2em;"&gt; -&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc. &lt;/p&gt;</code> <strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
+<li>To use your tool you can use:<br>
+<code>$pixi run quarto --help" **Pro-Tip:** You can also enter the environment using</code><span class="math inline">\(pixi shell`. This allows you to forget about pixi and just run your commands as "normally" e.g. `\)</span>quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
+</ol>
 
 
 

@@ -10,7 +10,55 @@
 <atom:link href="https://larissa-k-g.github.io/MedBioInfo-Blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 06 Oct 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 07 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Work environments and Containerss</title>
+  <dc:creator>Larissa Kahnwald</dc:creator>
+  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center" style="float:right; width:45%; margin:0 0 1rem 1rem;">
+<figure class="figure">
+<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/pixi2025-10-07.png" class="img-fluid figure-img"></p>
+<figcaption>Pixi</figcaption>
+</figure>
+</div>
+<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
+<ol type="1">
+<li>To start, install pixie run this in your command line:<br>
+<code>$curl -fsSL https://pixi.sh/install.sh | sh</code></li>
+<li>Create a new project directory</li>
+<li>Add conda-forge and bioconda channels using -c flag:<br>
+<code>$pixi init folder_name -c conda-forge -c bioconda</code><br>
+
+<p style="margin-left:2em;">
+-&gt; Channels will give Pixi a source from were to install the dependencies. It’s like telling Pixi which shop to go to to buy all the tools you need.
+</p></li>
+<li>In your new folder you can now find a file - <strong>pixi.toml</strong>
+<p style="margin-left:2em;">
+-&gt; .toml contains all the important information about your environment. It tells you the channels you have added, the name you have given the environment, which operating system, in which version it has been optimized for. Here we can also define different tasks and a list of all the tools/dependencies that have been installed in this environment, after they have been added.
+</p></li>
+<li>To add a new tool/dependency you need to be in the project’s folder. Then you can simply use the command:<br>
+<code>$pixi add Quarto</code><br>
+e.g.&nbsp;to add Quarto <code>&lt;p style="margin-left:2em;"&gt; -&gt; to see if it was installed properly you can either test it with the command</code>$pixi run quarto –help<code>or go back to the .toml file and find that Quarto has been added as a dependency.&lt;/p&gt;</code><br>
+</li>
+<li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
+<code>&lt;p style="margin-left:2em;"&gt; -&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc. &lt;/p&gt;</code> <strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
+<li>To use your tool you can use:<br>
+<code>$pixi run quarto --help" **Pro-Tip:** You can also enter the environment using</code><img src="https://latex.codecogs.com/png.latex?pixi%20shell%60.%20This%20allows%20you%20to%20forget%20about%20pixi%20and%20just%20run%20your%20commands%20as%20%22normally%22%20e.g.%20%60">quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
+</ol>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/</guid>
+  <pubDate>Tue, 07 Oct 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Post With Code</title>
   <dc:creator>Harlow Malloc</dc:creator>
@@ -32,30 +80,6 @@
   <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/</guid>
   <pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate>
   <media:content url="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Getting started with a Quarto Blog</title>
-  <dc:creator>Larissa Kahnwald</dc:creator>
-  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<div class="quarto-figure quarto-figure-center" style="float:right; width:45%; margin:0 0 1rem 1rem;">
-<figure class="figure">
-<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/pixi2025-10-07.png" class="img-fluid figure-img"></p>
-<figcaption>Pixi</figcaption>
-</figure>
-</div>
-
-
-
- ]]></description>
-  <category>news</category>
-  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/</guid>
-  <pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Getting started with a Quarto Blog</title>
