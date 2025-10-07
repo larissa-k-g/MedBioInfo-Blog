@@ -1,0 +1,10 @@
+---
+title: "Getting started with a Quarto Blog"
+author: "Larissa Kahnwald"
+date: "2025-10-06"
+categories: [news]
+---
+![Pixi](pixi2025-10-07.png){style="float:right; width:45%; margin:0 0 1rem 1rem;"}
+
+
+

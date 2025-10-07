@@ -16,5 +16,8 @@
   },
   "posts/getting-started-with-quarto-blogs/index.qmd": {
     "index.html": "772ed00d"
+  },
+  "posts/pixi-qualitycontrol/index.qmd": {
+    "index.html": "c98cc8ad"
   }
 }
