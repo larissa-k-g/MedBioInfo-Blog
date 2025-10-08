@@ -18,7 +18,7 @@
     "href": "posts/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "This is a post with executable code."
+    "text": "executable code in quarto e.g. using bash needs a python or something environment, otherwise quarto doesn’t now how to execute it. This is a post with executable code."
   },
   {
     "objectID": "index.html",

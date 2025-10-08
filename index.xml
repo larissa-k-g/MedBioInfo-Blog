@@ -136,7 +136,7 @@ In case of this error: “Updates were rejected because the remote contains work
 
 
 
-<p>This is a post with executable code.</p>
+<p>executable code in quarto e.g.&nbsp;using bash needs a python or something environment, otherwise quarto doesn’t now how to execute it. This is a post with executable code.</p>
 
 
 
