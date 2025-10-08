@@ -39,7 +39,7 @@
     "href": "posts/nextflow-introduction/index.html",
     "title": "Getting started with nextflow",
     "section": "",
-    "text": "Nextflow creates a pipeline allowing you to resume from the point of error if something happens during your process. It comes with build-in git version control and allows any code language. They can run containers as well, which eliminates the need to install softwares or running into version and environments conflict. On NF you can find different modules to put in your pipeline."
+    "text": "Nextflow creates a pipeline allowing you to resume from the point of error if something happens during your process. It comes with build-in git version control and allows any code language. They can run containers as well, which eliminates the need to install softwares or running into version and environments conflict. On NF you can find different modules to put in your pipeline. Command line has the highest priority, more details to hierachy on canvas pixi run nextflow run hello.nf -resume –greeting ‘Bonjour le monde!’ does then"
   },
   {
     "objectID": "posts/getting-started-with-quarto-blogs/index.html",
