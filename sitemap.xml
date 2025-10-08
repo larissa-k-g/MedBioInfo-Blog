@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/about.html</loc>
-    <lastmod>2025-10-08T07:57:13.416Z</lastmod>
+    <lastmod>2025-10-08T08:14:51.795Z</lastmod>
   </url>
   <url>
     <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/welcome/index.html</loc>
-    <lastmod>2025-10-08T07:57:13.433Z</lastmod>
-  </url>
-  <url>
-    <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/index.html</loc>
-    <lastmod>2025-10-08T07:57:13.433Z</lastmod>
-  </url>
-  <url>
-    <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/index.html</loc>
-    <lastmod>2025-10-08T07:57:13.416Z</lastmod>
+    <lastmod>2025-10-08T08:14:51.813Z</lastmod>
   </url>
   <url>
     <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/index.html</loc>
-    <lastmod>2025-10-08T07:57:13.433Z</lastmod>
+    <lastmod>2025-10-08T08:14:51.812Z</lastmod>
+  </url>
+  <url>
+    <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/index.html</loc>
+    <lastmod>2025-10-08T08:14:51.795Z</lastmod>
+  </url>
+  <url>
+    <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/post-with-code/index.html</loc>
+    <lastmod>2025-10-08T08:14:51.813Z</lastmod>
+  </url>
+  <url>
+    <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/nextflow-introduction/index.html</loc>
+    <lastmod>2025-10-08T08:14:51.811Z</lastmod>
   </url>
   <url>
     <loc>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/getting-started-with-quarto-blogs/index.html</loc>
-    <lastmod>2025-10-08T07:57:13.417Z</lastmod>
+    <lastmod>2025-10-08T08:14:51.796Z</lastmod>
   </url>
 </urlset>

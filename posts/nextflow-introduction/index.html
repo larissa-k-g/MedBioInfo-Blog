@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Larissa Kahnwald">
-<meta name="dcterms.date" content="2025-10-07">
+<meta name="dcterms.date" content="2025-10-08">
 
-<title>Work environments and Containers – Applied-Bioinfo-Blog</title>
+<title>Getting started with nextflow – Applied-Bioinfo-Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Work environments and Containers</h1>
+      <h1 class="title">Getting started with nextflow</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
               </div>
@@ -139,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 7, 2025</p>
+        <p class="date">October 8, 2025</p>
       </div>
     </div>
     
@@ -158,68 +158,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-figure quarto-figure-center" style="float:right; width:45%; margin:0 0 1rem 1rem;">
-<figure class="figure">
-<p><img src="pixi2025-10-07.png" class="img-fluid figure-img"></p>
-<figcaption>Pixi</figcaption>
-</figure>
-</div>
-<p><strong>!Add slurm explanation!</strong></p>
-<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
-<section id="pixi---environment-manager" class="level4">
-<h4 class="anchored" data-anchor-id="pixi---environment-manager">Pixi - Environment manager</h4>
-<ol type="1">
-<li>To start, install pixie run this in your command line:<br>
-<code>$curl -fsSL https://pixi.sh/install.sh | sh</code></li>
-<li>Create a new project directory</li>
-<li>Add conda-forge and bioconda channels using -c flag:<br>
-<code>$pixi init folder_name -c conda-forge -c bioconda</code><br>
-
-<p style="margin-left:2em;">
--&gt; Channels will give Pixi a source from were to install the dependencies. It’s like telling Pixi which shop to go to to buy all the tools you need.
-</p></li>
-<li>In your new folder you can now find a file - <strong>pixi.toml</strong>
-<p style="margin-left:2em;">
--&gt; .toml contains all the important information about your environment. It tells you the channels you have added, the name you have given the environment, which operating system, in which version it has been optimized for. Here we can also define different tasks and a list of all the tools/dependencies that have been installed in this environment, after they have been added.
-</p></li>
-<li>To add a new tool/dependency you need to be in the project’s folder. Then you can simply use the command:<br>
-<code>$pixi add Quarto</code><br>
-e.g.&nbsp;to add Quarto
-<p style="margin-left:2em;">
--&gt; to see if it was installed properly you can either test it with the command <code>$pixi run quarto --help</code>or go back to the .toml file and find that Quarto has been added as a dependency.
-</p></li>
-<li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
-
-<p style="margin-left:2em;">
--&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc.
-</p>
-<strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
-<li>To use your tool you can use:<br>
-<code>$pixi run quarto --help</code><br>
-<strong>Pro-Tip:</strong> You can also enter the environment using <code>$pixi shell</code>. This allows you to forget about pixi and just run your commands as “normally” e.g.&nbsp;`$quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
-</ol>
-</section>
-<section id="container-images" class="level4">
-<h4 class="anchored" data-anchor-id="container-images">Container images</h4>
-<p>To ensure that your analysis are easily reproducible, indepentent of when and where they are run you can use container images. These are containers that have been created by other people. Here we are using Apptainer as a container, as it is already installed on the course server, however Docker was also recommended. Two common platforms to download container images from are Dockerhub and Seqera.</p>
-<ol type="1">
-<li>Dockerhub provides the first tool that we want to install: VCFtool, a software created for manipulation and quering of VCF files. It’s like a Swiss Army knife for VCF files - filter, summerize, analyze qenetic/sequencing data. To install it use:<br>
-<code>$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1</code>
-<p style="margin-left:2em;">
--&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is te dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.
-</p></li>
-<li>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those reposetories. Change the Container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</li>
-<li>Click on get Container, then copy paste the text from the website to the your system:<br>
-<code>$apptainer pull fastqc:0.12.1.sif oras://community.wave.seqera.io/library/vcftools:0.1.17--b541aa8d9f9213f9</code>
-<p style="margin-left:2em;">
-oras is used, as this is the registry that is being pulled from in this case
-</p>
-Here, we are pulling from the oras registry rather then docker which is why we use oras:// isntead.</li>
-<li>To run use: <code>$apptainer exec fastqc:0.12.1.sif vcftools --version</code></li>
-</ol>
+<p>Nextflow creates a pipeline allowing you to resume from the point of error if something happens during your process. It comes with build-in git version control and allows any code language. They can run containers as well, which eliminates the need to install softwares or running into version and environments conflict. On NF you can find different modules to put in your pipeline.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
