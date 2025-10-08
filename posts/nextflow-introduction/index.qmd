@@ -1,0 +1,9 @@
+---
+title: "Getting started with nextflow"
+author: "Larissa Kahnwald"
+date: "2025-10-08"
+categories: [news]
+---
+
+Nextflow creates a pipeline allowing you to resume from the point of error if something happens during your process. It comes with build-in git version control and allows any code language. They can run containers as well, which eliminates the need to install softwares or running into version and environments conflict.
+On NF you can find different modules to put in your pipeline. 

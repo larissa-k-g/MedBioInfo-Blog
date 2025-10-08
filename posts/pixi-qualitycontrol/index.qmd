@@ -6,6 +6,8 @@ categories: [news]
 ---
 ![Pixi](pixi2025-10-07.png){style="float:right; width:45%; margin:0 0 1rem 1rem;"}
 
+**!Add slurm explanation!**
+
 In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers.
 That sounds great, but does that mean? 
 Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It's basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as **Pixi**, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want.
