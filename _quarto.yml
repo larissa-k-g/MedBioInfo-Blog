@@ -11,6 +11,13 @@ website:
         href: https://github.com/
       - icon: twitter
         href: https://twitter.com
+  sidebar: 
+    style: docked
+    format:
+    html:
+      toc: true
+      toc-expand: 2
+      include-after-body: toggle-sidebar.html
 format:
   html:
     theme:

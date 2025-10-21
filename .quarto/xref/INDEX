@@ -22,5 +22,14 @@
   },
   "posts/nextflow-introduction/index.qmd": {
     "index.html": "4c5e6858"
+  },
+  "posts/Quality-control/index.qmd": {
+    "index.html": "2776d6b4"
+  },
+  "posts/quarto-blogs/index.qmd": {
+    "index.html": "596baac6"
+  },
+  "posts/pixi-environment-containers/index.qmd": {
+    "index.html": "e91dae72"
   }
 }
