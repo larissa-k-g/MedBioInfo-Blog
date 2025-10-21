@@ -4,7 +4,7 @@ author: "Larissa Kahnwald"
 date: "2025-10-07"
 categories: [news]
 ---
-![Pixi](pixi2025-10-07.png){style="float:right; width:45%; margin:0 0 1rem 1rem;"}
+![](pixi2025-10-07.png){style="float:right; width:45%; margin:0 0 1rem 1rem;"}
 
 **!Add slurm explanation!**
 
