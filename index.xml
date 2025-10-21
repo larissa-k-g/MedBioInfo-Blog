@@ -33,20 +33,20 @@
 <item>
   <title>Work environments and Containers</title>
   <dc:creator>Larissa Kahnwald</dc:creator>
-  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/</link>
+  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/pixi2025-10-07.png" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
+<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/pixi2025-10-07.png" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
 <p><strong>!Add slurm explanation!</strong></p>
-<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
+<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but what does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
 <section id="pixi---environment-manager" class="level4">
 <h4 class="anchored" data-anchor-id="pixi---environment-manager">Pixi - Environment manager</h4>
 <ol type="1">
-<li>To start, install pixie run this in your command line:<br>
+<li>To start, install pixie:<br>
 <code>$curl -fsSL https://pixi.sh/install.sh | sh</code></li>
 <li>Create a new project directory</li>
 <li>Add conda-forge and bioconda channels using -c flag:<br>
@@ -100,13 +100,51 @@ Here, we are pulling from the oras registry rather then docker which is why we u
 
  ]]></description>
   <category>news</category>
-  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-qualitycontrol/</guid>
+  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/</guid>
+  <pubDate>Tue, 07 Oct 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Quality control</title>
+  <dc:creator>Larissa Kahnwald</dc:creator>
+  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Determining the quality of your data is key, in order to know if your result is trustworthy or not, should you actually be drawing any conlcusions from your experiment in the first place?<br>
+Quaility control is therefore central, to get to know your data and to understand what you are working with. For sequencing data we can use the software FastQC to check the raw data, before starting a lengthy analysis.<br>
+FastQC is especially valuable if we do high-thoughput sequencing and thus have a lot of data to juggle. A lot of data also means that analysis, even if automised might run for several hours, even on a supercomputer. To protect our session from being interupted due to connection issues or because the laptop is accidentally being closed; we can use GNU Screen, a terminal multiplexer. Screen enables to start several independant sessions and even to continue a running process if we disconnect. It basically creates vertual terminals inside our session.</p>
+<section id="screen-session" class="level4">
+<h4 class="anchored" data-anchor-id="screen-session">Screen Session</h4>
+<ol type="1">
+<li>Start by naming a session<br>
+<code>$screen -S name</code></li>
+<li>Start your process, then detach from the screen any time and let it run independently. You can then log out or start toher screens and come back to this process at a later time.<br>
+<code>Ctrl+ a d</code><br>
+</li>
+<li>Simply get a list of all open screen session:<br>
+<code>$screen -ls</code><br>
+Then, reattach to the selected session:<br>
+<code>$ screen -r name</code></li>
+</ol>
+</section>
+<section id="slurm" class="level4">
+<h4 class="anchored" data-anchor-id="slurm">Slurm</h4>
+
+
+</section>
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/</guid>
   <pubDate>Tue, 07 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Getting started with a Quarto Blog</title>
   <dc:creator>Larissa Kahnwald</dc:creator>
-  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/getting-started-with-quarto-blogs/</link>
+  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/quarto-blogs/</link>
   <description><![CDATA[ 
 
 
@@ -115,7 +153,7 @@ Here, we are pulling from the oras registry rather then docker which is why we u
 
 <div class="quarto-figure quarto-figure-center" style="float:right; width:45%; margin:0 0 1rem 1rem;">
 <figure class="figure">
-<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/getting-started-with-quarto-blogs/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/quarto-blogs/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg" class="img-fluid figure-img"></p>
 <figcaption>Getting started</figcaption>
 </figure>
 </div>
@@ -138,7 +176,7 @@ In case of this error: “Updates were rejected because the remote contains work
 
  ]]></description>
   <category>news</category>
-  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/getting-started-with-quarto-blogs/</guid>
+  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/quarto-blogs/</guid>
   <pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
