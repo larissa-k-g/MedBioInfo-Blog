@@ -6,3 +6,15 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+format:
+  html:
+    toc: true
+    toc-expand: 2
+    toc-depth: 3
+
+website:
+  sidebar:
+    style: docked        # or "floating" if you prefer floating by default
+    contents: auto       # ← automatically lists headings from the current page
+    title: "On this page"  # optional, remove if you don't want a title
