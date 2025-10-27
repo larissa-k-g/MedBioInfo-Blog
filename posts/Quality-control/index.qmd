@@ -20,10 +20,10 @@ The best way to keep track of all the instructions is to define them in sequence
 `$screen -ls`  
 Then, reattach to the selected session:  
 `$screen -r name`  
-   
+
 #### Slurm  
-To run slurm from the command line you can use:  
-`$ srun -A project_ID -t dd-hh:mm:ss -n 1 <tool options, commands and pathway to the dataset>`
+You can run Slurm from the command line using:  
+`$srun -A project_ID -t dd-hh:mm:ss -n 1 <tool options, commands and pathways to the dataset>`
  <p style="margin-left:2em;"> -> the project_ID defines the project/account which is charged for the computing time  
  <p style="margin-left:2em;"> -> -t gives an estimate of the computing time that the job is going to need. This will not only influence the job queueing (shorter run times are preferred) but also defines the max time that will be spent on the task. After the given time the job will be cancelled.  
     
