@@ -70,4 +70,16 @@ pixi run multiqc -o ../multiqc ../fastqc
 `$pixi run sbatch name.sh`  
 <p style="margin-left:2em;"> -> you can verify that everything is running properly by checking your job's status: `$ squeue -u <user-name>`   
 
-4. When the job is completed you can find the output files in the same folder, where you where in, when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.  
+4. When the job is completed you can find the output files in the same folder, where you where in, when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.   
+
+#### Containers  
+To use FastQC in containers set up your script like this:  
+```bash
+#! /bin/bash -l
+#SBATCH -A hpc2n2025-203
+#SBATCH -t 30:00
+#SBATCH -n 1
+
+apptainer exec -B ../data/:/data ../container-image/fastqc:0.12.1.sif fastqc -o ../fastqc-container --noextract ../data/*fastq.gz
+```   
+For more details, on how to get started with containers see my previous post on [Work environments and Containers](https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/).  
