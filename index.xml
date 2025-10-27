@@ -116,8 +116,9 @@ Here, we are pulling from the oras registry rather then docker which is why we u
 <p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/DNA.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
 <p>Determining the quality of your data is key, in order to know if your result is trustworthy or not, should you actually be drawing any conlcusions from your experiment in the first place?<br>
 Quaility control is therefore central, to get to know your data and to understand what you are working with. For sequencing data we can use the software FastQC to check the raw data, before starting a lengthy analysis.<br>
-FastQC is especially valuable if we do high-thoughput sequencing and thus have a lot of data to juggle. A lot of data also means that analysis, even if automised might run for several hours, even on a supercomputer. To protect our session from being interupted due to connection issues or because the laptop is accidentally being closed; we can use GNU Screen, a terminal multiplexer. Screen enables to start several independant sessions and even to continue a running process if we disconnect. It basically creates virtual terminals inside our session. Another system we need is a job scheduler. SLURM is such a management system, meaning that it can start and control jobs for you. It is used in computer clusters to organize the queing of different jobs and SLURM also automatically substracts the running time from your project account. So, now that we have our job secured with a screen session and Slurm takes care of the resources we can move on to set the quality control.<br>
-The best way to keep track of all the instructions is to define them in sequence in a script. To this end we create a new directory for all the scripts within our project folder and create a <em>.sh</em> file. Since SLURM is our resoource management we use sbatch to submit our batch script.</p>
+FastQC is especially valuable if we do high-thoughput sequencing and thus have a lot of data to juggle. A lot of data also means that analysis, might run for several hours, even on a supercomputer. To protect your session from being interupted due to connection issues or because the laptop is accidentally being closed; we can use GNU Screen, a terminal multiplexer. Screen enables to start several independant sessions and even to continue a running process if we disconnect. It basically creates virtual terminals inside our session. Another system we need is a job scheduler. SLURM is such a management system, meaning that it can start and control jobs for you. It is used in computer clusters to organize the queing of different jobs and SLURM also automatically substracts the running time from your project account. So, now that we have our job secured with a screen session and Slurm takes care of the resources we can move on to set the quality control.<br>
+The best way to keep track of all the instructions is to define them in sequence in a script. To this end, create a new directory for all the scripts within our project folder and create a <em>.sh</em> file for our instructions. Since SLURM is our resoource management we use sbatch to submit a batch script.<br>
+To do a quality control for your seqeuncing data you can use FastQC. FastQC is a tool, that is suitable for high-throughput sequencing data. It provides information on the general quality on your reads, visualizes the quiality score distribution, as well as the share of each base per sequence. Using FastQC will allow you to identify contaminations due to adapters or other sequences which are overrepresented. It will give you a quality score for an entire sample, instead of single reads. However, the output will still be one file per sample. Therefore, if you need to analyze several samples in one project you can use MultiQC to summerize the output from FastQC.</p>
 <section id="screen-session" class="level4">
 <h4 class="anchored" data-anchor-id="screen-session">Screen Session</h4>
 <ol type="1">
@@ -132,27 +133,98 @@ Then, reattach to the selected session:<br>
 <code>$screen -r name</code></li>
 </ol>
 </section>
+<section id="fastqc" class="level4">
+<h4 class="anchored" data-anchor-id="fastqc">FastQC</h4>
+<ol type="1">
+<li>Use Pixi to install FastQC or check if it has already been installed:<br>
+</li>
+</ol>
+<ul>
+<li>to check if it is installed: <code>$ pixi run fastqc --help</code></li>
+<li>to install:<br>
+<code>$pixi init -c conda-forge -c bioconda</code><br>
+<code>$pixi add fastqc</code><br>
+<code>$pixi run fastqc --help</code></li>
+</ul>
+</section>
+<section id="multiqc" class="level4">
+<h4 class="anchored" data-anchor-id="multiqc">MultiQC</h4>
+<ol type="1">
+<li>Use Pixi to install MultiQC or check if it has already been installed:<br>
+</li>
+</ol>
+<ul>
+<li>to check if it is installed fo into the pixi.toml or run <code>$pixi run multiqc --help</code></li>
+<li>to install:<br>
+<code>$pixi init -c conda-forge -c bioconda</code><br>
+<code>$pixi add multiqc</code></li>
+</ul>
+<p>-&gt; To activate the environment run: <code>$pixi shell</code></p>
+</section>
 <section id="slurm" class="level4">
 <h4 class="anchored" data-anchor-id="slurm">Slurm</h4>
-You can run Slurm from the command line using:<br>
-<code>$srun -A project_ID -t dd-hh:mm:ss -n 1 &lt;tool options, commands and pathways to the dataset&gt;</code>
-<p style="margin-left:2em;">
--&gt; the project_ID defines the project/account which is charged for the computing time<br>
-
-</p><p style="margin-left:2em;">
-</p><p>-&gt; -t gives an estimate of the computing time that the job is going to need. This will not only influence the job queueing (shorter run times are preferred) but also defines the max time that will be spent on the task. After the given time the job will be cancelled.</p>
+<p>You can run Slurm from the command line using:<br>
+<code>$srun -A project_ID -t dd-hh:mm:ss -n 1 &lt;tool options, commands and pathways to the dataset&gt;</code><br>
+- The project_ID defines the project/account which is charged for the computing time. You can check the projects of which you are a member with <code>$projinfo</code>. This will also allow you to see how many computing hours are left on them.<br>
+- ‘-t’ gives an estimate of the computing time that the job is going to need. This will not only influence the job queueing (shorter run times are preferred) but also defines the max time that will be spent on the task. After the given time the job will be cancelled.<br>
+- to use e.g.&nbsp;FastQC on one or two samples we would define it like this: <code>$srun -A project_ID -t 15:00 -n 1 fastqc --noextract -o fastqc data/sample_1.fastq.gz data/sample_2.fastq.gz</code></p>
 </section>
 <section id="sbatch" class="level4">
 <h4 class="anchored" data-anchor-id="sbatch">sbatch</h4>
 <ol type="1">
-<li>Create a new folder within your project folder and add a <code>.sh</code> file for the batch script.</li>
-<li>Set your header similar to this:<br>
-`$ #! /bin/bash -l<br>
-#SBATCH -A project_ID<br>
-#SBATCH -t 30:00<br>
-#SBATCH -n 1</li>
+<li>Create a new folder within your project folder and add a <code>name.sh</code> file for the batch script.</li>
+<li>For FastQC set your file up like this:<br>
+</li>
 </ol>
-<p>fastqc -o ../fastqc –noextract ../data/*fastq.gz`</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#!/bin/bash -l </span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -A project_ID </span></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -t dd-hh:mm:ss</span></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -n 1 </span></span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pixi</span> run fastqc <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-o</span> ../fastqc <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--noextract</span> ../data/<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>fastq.gz</span></code></pre></div></div>
+<p>2’. For MultiQC set it up like this</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#! /bin/bash -l</span></span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -A project_ID</span></span>
+<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -t dd-hh:mm:ss</span></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -n 1</span></span>
+<span id="cb2-5"></span>
+<span id="cb2-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pixi</span> run multiqc <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-o</span> ../multiqc ../fastqc</span></code></pre></div></div>
+<ol start="3" type="1">
+<li><p>Save the script and run it with pixi:<br>
+<code>$pixi run sbatch name.sh</code><br>
+</p>
+<p style="margin-left:2em;">
+</p><p>-&gt; you can verify that everything is running properly by checking your job’s status: <code>$ squeue -u &lt;user-name&gt;</code></p></li>
+<li><p>When the job is completed you can find the output files in the same folder, where you where in, when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.</p></li>
+</ol>
 
 
 </section>
