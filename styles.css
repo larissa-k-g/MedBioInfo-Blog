@@ -15,8 +15,12 @@ body {
   line-height: 1.5;
 }
 
-/* Optional: code blocks or quotes */
-pre, code, blockquote {
-  background-color: #4c91ebc9; /* subtle gray background */
-  color: #222222;
+/* 🩵 Make code blocks match the site background */
+pre,
+code,
+.quarto-code-block,
+.sourceCode {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
