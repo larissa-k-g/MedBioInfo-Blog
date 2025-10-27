@@ -277,6 +277,17 @@ Then, reattach to the selected session:<br>
 </p><p>-&gt; you can verify that everything is running properly by checking your job’s status: <code>$ squeue -u &lt;user-name&gt;</code></p></li>
 <li><p>When the job is completed you can find the output files in the same folder, where you where in, when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.</p></li>
 </ol>
+</section>
+<section id="containers" class="level4">
+<h4 class="anchored" data-anchor-id="containers">Containers</h4>
+<p>To use FastQC in containers set up your script like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/bash -l</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -A hpc2n2025-203</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 30:00</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -n 1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec <span class="at">-B</span> ../data/:/data ../container-image/fastqc:0.12.1.sif fastqc <span class="at">-o</span> ../fastqc-container <span class="at">--noextract</span> ../data/<span class="pp">*</span>fastq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For more details, on how to get started with containers see my previous post on <a href="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/">Work environments and Containers</a>.</p>
 
 
 </section>

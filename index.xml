@@ -225,6 +225,35 @@ font-style: inherit;">-o</span> ../multiqc ../fastqc</span></code></pre></div></
 </p><p>-&gt; you can verify that everything is running properly by checking your job’s status: <code>$ squeue -u &lt;user-name&gt;</code></p></li>
 <li><p>When the job is completed you can find the output files in the same folder, where you where in, when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.</p></li>
 </ol>
+</section>
+<section id="containers" class="level4">
+<h4 class="anchored" data-anchor-id="containers">Containers</h4>
+<p>To use FastQC in containers set up your script like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#! /bin/bash -l</span></span>
+<span id="cb3-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -A hpc2n2025-203</span></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -t 30:00</span></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#SBATCH -n 1</span></span>
+<span id="cb3-5"></span>
+<span id="cb3-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apptainer</span> exec <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-B</span> ../data/:/data ../container-image/fastqc:0.12.1.sif fastqc <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-o</span> ../fastqc-container <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--noextract</span> ../data/<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>fastq.gz</span></code></pre></div></div>
+<p>For more details, on how to get started with containers see my previous post on <a href="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/">Work environments and Containers</a>.</p>
 
 
 </section>
