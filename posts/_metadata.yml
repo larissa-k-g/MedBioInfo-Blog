@@ -6,3 +6,13 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+#Enable table of contents 
+format:
+  html: 
+    include-after-body: toggle-sidebar.html
+    toc: true
+    toc-location: left
+    toc-title: "Content"
+    toc-depth: 4
+    toc-expand: true

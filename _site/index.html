@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -157,12 +157,12 @@ window.Quarto = {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/larissa-k-g"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/larissa-kahnwald/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -176,13 +176,13 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
+    <div class="quarto-title column-page">
       <h1 class="title">Applied-Bioinfo-Blog</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta column-page">
 
       
     
@@ -193,11 +193,9 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(6)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
@@ -208,6 +206,27 @@ window.Quarto = {
 
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-author" data-direction="asc">
+        Author
+      </option>
+    </select>
+  </div>
+</div>
 <div class="list grid quarto-listing-cols-3">
 <div class="g-col-1" data-index="0" data-categories="bmV3cw==" data-listing-date-sort="1759874400000" data-listing-file-modified-sort="1761232821650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="93">
 <a href="./posts/nextflow-introduction/index.html" class="quarto-grid-link">
@@ -217,11 +236,6 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 Getting started with nextflow
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
 <div class="card-text listing-description delink">
 Nextflow creates a pipeline allowing you to resume from the point of error if something happens during your process. It comes with build-in git version control and allows…
 </div>
@@ -236,7 +250,7 @@ Oct 8, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1759788000000" data-listing-file-modified-sort="1761576986135" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="965">
+<div class="g-col-1" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1759788000000" data-listing-file-modified-sort="1761580866803" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="965">
 <a href="./posts/Quality-control/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/Quality-control/DNA.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -244,11 +258,6 @@ Oct 8, 2025
 <h5 class="no-anchor card-title listing-title">
 Quality control
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
 <div class="card-text listing-description delink">
 Determining the quality of your data is key, in order to know if your result is trustworthy or not, should you actually be drawing any conlcusions from your experiment in…<br><br><br><em></em><br>
 </div>
@@ -263,7 +272,7 @@ Oct 7, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="bmV3cw==" data-listing-date-sort="1759788000000" data-listing-file-modified-sort="1761576567195" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="807">
+<div class="g-col-1" data-index="2" data-categories="bmV3cw==" data-listing-date-sort="1759788000000" data-listing-file-modified-sort="1761581139778" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="811">
 <a href="./posts/pixi-environment-containers/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/pixi-environment-containers/pixi2025-10-07.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -271,11 +280,6 @@ Oct 7, 2025
 <h5 class="no-anchor card-title listing-title">
 Work environments and Containers
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
 <div class="card-text listing-description delink">
 In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its…<strong></strong>
 </div>
@@ -290,7 +294,7 @@ Oct 7, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1759701600000" data-listing-file-modified-sort="1759863820388" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="220">
+<div class="g-col-1" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1759701600000" data-listing-file-modified-sort="1761580347685" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="220">
 <a href="./posts/quarto-blogs/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/quarto-blogs/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -298,11 +302,6 @@ Oct 7, 2025
 <h5 class="no-anchor card-title listing-title">
 Getting started with a Quarto Blog
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
 <div class="card-text listing-description delink">
 First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title…
 </div>
@@ -327,15 +326,6 @@ Oct 6, 2025
 <h5 class="no-anchor card-title listing-title">
 Post With Code
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
-
-</div>
 <div class="card-text listing-description delink">
 executable code in quarto e.g.&nbsp;using bash needs a python or something environment, otherwise quarto doesn’t now how to execute it. This is a post with executable code.
 </div>
@@ -345,33 +335,6 @@ Harlow Malloc
 </div>
 <div class="listing-date">
 Oct 5, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="bmV3cw==" data-listing-date-sort="1759442400000" data-listing-file-modified-sort="1759778591180" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<a href="./posts/welcome/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/welcome/thumbnail.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Welcome To My Blog
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
-<div class="card-text listing-description delink">
-This is the first post in a Quarto blog. Welcome!
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Tristan O’Malley
-</div>
-<div class="listing-date">
-Oct 3, 2025
 </div>
 </div>
 </div>

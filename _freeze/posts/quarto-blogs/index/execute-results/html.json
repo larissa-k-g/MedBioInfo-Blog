@@ -1,0 +1,12 @@
+{
+  "hash": "5edd79ed5eb759aeaf59c9cafed307a7",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Getting started with a Quarto Blog\"\nauthor: \"Larissa Kahnwald\"\ndate: \"2025-10-06\"\ncategories: [news]\n---\n\n::: {.callout-tip collapse=\"true\" title=\"Table of Contents\"}\n```{toc}\n depth: 4\n```\n:::\n\n![Getting started](patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg){style=\"float:right; width:45%; margin:0 0 1rem 1rem;\"}\n\nFirst, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe\nSecond, add your text and adjust the title etc. In short: make your entry.\nTo check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.  \n\n**!Pro Tip: **To make paragraphs end the line with two spaces. \n<p style=\"margin-left:2em;\"> For an indentation try `<p style=\"margin-left:2em;\"> Your indented text </p>` </p>\n\n----------------------\n\nTo actually safe and publish go into the Terminal again and  \n`$git add --all`  \n`$git commit -m \"Remember to leave a little comment of what the changes that you made were\"`  \n`$git push origin main`  \nIn case of this error: \"Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing\" try:  \n`$git pull origin main` This should merge the remote updates with your local copy, then try push again.  \n`$git push origin main`.\n\nAnd there you go - Your first Quarto Blog Entry!\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

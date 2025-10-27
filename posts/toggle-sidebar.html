@@ -1,0 +1,25 @@
+<button id="toc-toggle">☰ Contents</button>
+
+<script>
+  const toc = document.querySelector('#quarto-margin-sidebar, #quarto-sidebar, nav.sidebar, .toc, #TOC');
+  const btn = document.getElementById('toc-toggle');
+
+  if (btn && toc) {
+    // Toggle sidebar when clicking the button
+    btn.addEventListener('click', (event) => {
+      event.stopPropagation(); // prevent immediate closing
+      document.body.classList.toggle('toc-open');
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (event) => {
+      const clickedInsideSidebar = toc.contains(event.target);
+      const clickedButton = btn.contains(event.target);
+      const sidebarIsOpen = document.body.classList.contains('toc-open');
+      
+      if (sidebarIsOpen && !clickedInsideSidebar && !clickedButton) {
+        document.body.classList.remove('toc-open');
+      }
+    });
+  }
+</script>

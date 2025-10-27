@@ -24,3 +24,55 @@ code,
   box-shadow: none !important;
   border: none !important;
 }
+
+p code, li code, td code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0.1em 0.25em;
+  border-radius: 0.3em;
+}
+
+
+/* Floating sidebar toggle button */
+#toc-toggle {
+  position: fixed;
+  top: 6rem;
+  left: 1rem;
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: left 0.3s ease;
+}
+
+/* --- Sidebar Overlay --- */
+#quarto-sidebar, #quarto-margin-sidebar {
+  position: fixed !important;
+  top: 0;
+  left: -280px; /* hidden by default */
+  height: 100%;
+  width: 260px;
+  background-color: var(--bs-body-bg);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 1500;
+}
+
+/* When sidebar is open */
+body.toc-open #quarto-sidebar,
+body.toc-open #quarto-margin-sidebar {
+  left: 0;
+}
+
+/* Move button when open */
+body.toc-open #toc-toggle {
+  left: 270px;
+}
+
+/* Smooth transition for content */
+main.content {
+  transition: transform 0.3s ease;
+}

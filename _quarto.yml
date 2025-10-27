@@ -2,24 +2,21 @@ project:
   type: website
 
 website:
-  description: "A blog built with Quarto"
+  description: "A blog on getting started with bioinformatics"
   title: "Applied-Bioinfo-Blog"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/larissa-k-g
+      - icon: linkedin
+        href: https://www.linkedin.com/in/larissa-kahnwald/
 
 format:
-  html:
+  html: 
     theme:
       - lux
       - morph
     css: styles.css
 execute:
   freeze: auto
-
-
-
