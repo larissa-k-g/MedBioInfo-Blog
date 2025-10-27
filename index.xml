@@ -8,7 +8,7 @@
 <title>Applied-Bioinfo-Blog</title>
 <link>https://larissa-k-g.github.io/MedBioInfo-Blog/</link>
 <atom:link href="https://larissa-k-g.github.io/MedBioInfo-Blog/index.xml" rel="self" type="application/rss+xml"/>
-<description>A blog built with Quarto</description>
+<description>A blog on getting started with bioinformatics</description>
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Wed, 08 Oct 2025 00:00:00 GMT</lastBuildDate>
 <item>
