@@ -76,20 +76,3 @@ body.toc-open #toc-toggle {
 main.content {
   transition: transform 0.3s ease;
 }
-
-/* Main content width and side margins */
-main.content {
-  max-width: 900px;     /* controls how wide text area can get */
-  margin-left: auto;    /* center it horizontally */
-  margin-right: auto;
-  padding-left: 1rem;   /* space inside, left */
-  padding-right: 1rem;  /* space inside, right */
-}
-
-/* Optional: tighten mobile spacing */
-@media (max-width: 768px) {
-  main.content {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
