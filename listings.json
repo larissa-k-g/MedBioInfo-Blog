@@ -3,8 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/posts/nextflow-introduction/index.html",
-      "/posts/pixi-environment-containers/index.html",
       "/posts/Quality-control/index.html",
+      "/posts/pixi-environment-containers/index.html",
       "/posts/quarto-blogs/index.html",
       "/posts/post-with-code/index.html"
     ]
