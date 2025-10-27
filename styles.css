@@ -3,19 +3,19 @@
   color: #111111;  /* darker than body text */
 }
 
-/* Optional: other headings */
+/* Other headings */
 h2, h3, h4, h5, h6 {
   color: #111111;
 }
 
 /* Background stays light */
 body {
-  color: #000000;             /* dark gray for body text, easier to read than pure black */
+  color: #000000;             /* dark gray for body text */
   font-family: "Inter", sans-serif;
   line-height: 1.5;
 }
 
-/* 🩵 Make code blocks match the site background */
+/* Make code blocks match the background */
 pre,
 code,
 .quarto-code-block,
