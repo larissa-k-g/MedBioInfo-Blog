@@ -150,7 +150,14 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Content</h2>
+   
+  <ul>
+  <li><a href="#before-starting" id="toc-before-starting" class="nav-link active" data-scroll-target="#before-starting">Before starting</a></li>
+  <li><a href="#writing-a-nexflow-script" id="toc-writing-a-nexflow-script" class="nav-link" data-scroll-target="#writing-a-nexflow-script">Writing a Nexflow script</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -164,11 +171,82 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="pipelines.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
-<p>Nextflow creates a pipeline allowing you to resume from the point of error if something happens during your process. It comes with build-in git version control and allows any code language. They can run containers as well, which eliminates the need to install softwares or running into version and environments conflict. On NF you can find different modules to put in your pipeline. Command line has the highest priority, more details to hierachy on canvas pixi run nextflow run hello.nf -resume –greeting ‘Bonjour le monde!’ does then</p>
+<p>In the last Blog we learned that to use tools as e.g.&nbsp;(FastQC and MultiQC)[https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc] we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsitstencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used, to provide pipelines, that allow easier and consistnent workflow and sharing. (Nextflow)[https://nextflow.io/docs/latest/#nextflow] is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error, if some part of the pipline needs deebugging. It comes with build-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.<br>
+Fundamentally, Nextflow provieds channels, tracking in- and output that connect different modules/tools/processes which are defined in scripts, keeping each process independet. This allows that each script could be written in a differentn scripting language if wanted. Nextflow keeps track, navigates and even allows to parallelize the flow of your data in a time-efficient manner, making it highly scalable as well.</p>
+<section id="before-starting" class="level4">
+<h4 class="anchored" data-anchor-id="before-starting">Before starting</h4>
+<p>-&gt; Before getting started set up a screen session, with Pixi as environment manager and add nextflow to your environment:<br>
+<code>$screen -S nextflow</code> <code>$pixi init -c bioconda -c conda-forge</code> <code>$pixi add nextflow</code></p>
+</section>
+<section id="writing-a-nexflow-script" class="level4">
+<h4 class="anchored" data-anchor-id="writing-a-nexflow-script">Writing a Nexflow script</h4>
+<pre class="script"><code>#!/usr/bin/env nextflow
+
+params.greeting = 'Hello world!'
+greeting_ch = Channel.of(params.greeting)
+
+process SPLITLETTERS {
+    input:
+    val x
+
+    output:
+    path 'chunk_*'
+
+    script:
+    """
+    printf '$x' | split -b 6 - chunk_
+    """
+}
+
+process CONVERTTOUPPER {
+    input:
+    path y
+
+    output:
+    stdout
+
+    script:
+    """
+    cat $y | tr '[a-z]' '[A-Z]' 
+    """
+}
+
+workflow {
+    letters_ch = SPLITLETTERS(greeting_ch)
+    results_ch = CONVERTTOUPPER(letters_ch.flatten())
+    results_ch.view{ it }
+} </code></pre>
+<p>(Nf-core)[https://nf-co.re] provides different modules to put in your pipeline and even whole pipelines that you can adjust to your needs. Command line has the highest priority, more details to hierachy on canvas pixi run nextflow run hello.nf -resume –greeting ‘Bonjour le monde!’ does then</p>
 
 
+</section>
 
 </main> <!-- /main -->
+<button id="toc-toggle">☰ Contents</button>
+
+<script>
+  const toc = document.querySelector('#quarto-margin-sidebar, #quarto-sidebar, nav.sidebar, .toc, #TOC');
+  const btn = document.getElementById('toc-toggle');
+
+  if (btn && toc) {
+    // Toggle sidebar when clicking the button
+    btn.addEventListener('click', (event) => {
+      event.stopPropagation(); // prevent immediate closing
+      document.body.classList.toggle('toc-open');
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (event) => {
+      const clickedInsideSidebar = toc.contains(event.target);
+      const clickedButton = btn.contains(event.target);
+      const sidebarIsOpen = document.body.classList.contains('toc-open');
+      
+      if (sidebarIsOpen && !clickedInsideSidebar && !clickedButton) {
+        document.body.classList.remove('toc-open');
+      }
+    });
+  }
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
