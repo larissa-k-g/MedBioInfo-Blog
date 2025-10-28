@@ -22,21 +22,31 @@
 
 
 <p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/nextflow-introduction/pipelines.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
-<p>In the last Blog we learned that to use tools as e.g.&nbsp;(FastQC and MultiQC)[https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc] we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsitstencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used, to provide pipelines, that allow easier and consistnent workflow and sharing. (Nextflow)[https://nextflow.io/docs/latest/#nextflow] is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error, if some part of the pipline needs deebugging. It comes with build-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.<br>
+<p>In the last Blog we learned that to use tools as e.g.&nbsp;<a href="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc">FastQC and MultiQC</a> we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsitstencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used, to provide pipelines, that allow easier and consistnent workflow and sharing. <a href="https://nextflow.io/docs/latest/#nextflow">Nextflow</a> is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error, if some part of the pipline needs deebugging. It comes with build-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.<br>
 Fundamentally, Nextflow provieds channels, tracking in- and output that connect different modules/tools/processes which are defined in scripts, keeping each process independet. This allows that each script could be written in a differentn scripting language if wanted. Nextflow keeps track, navigates and even allows to parallelize the flow of your data in a time-efficient manner, making it highly scalable as well.</p>
 <section id="before-starting" class="level4">
 <h4 class="anchored" data-anchor-id="before-starting">Before starting</h4>
 <p>-&gt; Before getting started set up a screen session, with Pixi as environment manager and add nextflow to your environment:<br>
-<code>$screen -S nextflow</code> <code>$pixi init -c bioconda -c conda-forge</code> <code>$pixi add nextflow</code></p>
+<code>$screen -S nextflow</code><br>
+<code>$pixi init -c bioconda -c conda-forge</code><br>
+<code>$pixi add nextflow</code></p>
 </section>
 <section id="writing-a-nexflow-script" class="level4">
 <h4 class="anchored" data-anchor-id="writing-a-nexflow-script">Writing a Nexflow script</h4>
-<p>A simple .nf file can be set up like this:</p>
-<pre class="script"><code>#!/usr/bin/env nextflow
+<p>Let’s go step by step through how a <a href="https://www.nextflow.io/docs/latest/process.html#inputs">.nf file</a> can be set up.<br>
+1. The first line of the script is called a shebang and it defines the interpreter, indicated by #!. Afterwards, the path to the interpreter, within the environment, is defined and nextflow is defined to run the script.</p>
+<pre class="dsl"><code>#!/usr/bin/env nextflow``` 
 
-params.greeting = 'Hello world!'
-greeting_ch = Channel.of(params.greeting)
+2. In the next line the parameter "greeting" is defined to carry the value "Hello world!". This can easily be adjusted or changed if the process should be run on a different string or data set or the like.  
+```DSL    
+params.greeting = 'Hello world!' ```   
 
+3. In the next part the channel "greeting_ch" is being initalized. The channel connects the input (so the value of the greeting parameter) to the first process, thus it defines the input of the workflow.   
+```script  
+greeting_ch = Channel.of(params.greeting)```  
+
+4. Now, the first process block is defined. In this example it is called "Splitletters" and is defined inbetween the  brackets {}. As an input a value is expected which has the variable X assigned to it. However, this could also be a file or path or the like. The output is defined right after. Here, it's a path. All outputs from this process should be called 'chunk_*', where * is a simple placeholder. Next, the script defines a two parted process of printing the value X and then split it into groups of 6 characters and to save it one by one in a file called chunk_aa.  
+```script   
 process SPLITLETTERS {
     input:
     val x
@@ -48,8 +58,11 @@ process SPLITLETTERS {
     """
     printf '$x' | split -b 6 - chunk_
     """
-}
+}  ```   
 
+5.  
+
+```script  
 process CONVERTTOUPPER {
     input:
     path y
@@ -61,14 +74,16 @@ process CONVERTTOUPPER {
     """
     cat $y | tr '[a-z]' '[A-Z]' 
     """
-}
+}   ```
 
+
+```script 
 workflow {
     letters_ch = SPLITLETTERS(greeting_ch)
     results_ch = CONVERTTOUPPER(letters_ch.flatten())
     results_ch.view{ it }
 } </code></pre>
-<p>(Nf-core)[https://nf-co.re] provides different modules to put in your pipeline and even whole pipelines that you can adjust to your needs. Command line has the highest priority, more details to hierachy on canvas pixi run nextflow run hello.nf -resume –greeting ‘Bonjour le monde!’ does then</p>
+<p><a href="https://nf-co.re">Nf-core</a> provides different modules to put in your pipeline and even whole pipelines that you can adjust to your needs. Command line has the highest priority, more details to hierachy on canvas pixi run nextflow run hello.nf -resume –greeting ‘Bonjour le monde!’ does then</p>
 
 
 </section>
