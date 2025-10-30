@@ -1,5 +1,5 @@
 ---
-title: "Getting started with nextflow"
+title: "Getting started with nextflow and nf-core"
 author: "Larissa Kahnwald"
 date: "2025-10-08"
 categories: [news]
@@ -97,4 +97,12 @@ Since this can take up a lot of space you should clean the chached results and t
 or also clean all previous runs, before running it again:  
 `$pixi run nextflow clean -before <RUN NAME> -f`
   
-**Pro Tip: **[Nf-core](https://nf-co.re) provides different modules to put in your pipeline and even whole pipelines that you can adjust to your needs. 
+
+#### nf-core 
+nf-core is a community where nexflow modules and piplines a being shared, maintained and developped. It offers a variety of different piplines. However, you should always try to understand if they are relevant to your project and if the process matches what you understand it to be, rather then blindly apply them for your data processing. Understanding them does not only secure that they are suited to be applied in your procesing, but you ca also optimize them to your needs.  
+You can also seek help at the weekly online helpdesk, view training material and get tips and tricks on proper documentation and development.  
+Each website on a pipeline is set up with a "usage" tap which describes the piplines function and the input file. Under "Parameters" details to set up the pipline are given. The Output tap can help to interpret the produced output. To add nf-core pipelines to your process start by installing it to your environment, together with nextflow:  
+`$ pixi add nextflow nf-core`  
+You can then run differnt piplines by referencing their location at nf-core:  
+`$pixi run nextflow run nf-core/sarek -profile test --outdir sarek_test -c server.config` 
+In this example the Sarek pipeline was used, a test profile was used which uses build-in test data, the results will be safed in a directory called sarek_test. The configuration file's name and location for the server is defined with option -c.  
