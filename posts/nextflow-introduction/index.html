@@ -269,13 +269,21 @@ You can then run different pipelines by referencing their location at nf-core:<b
 </section>
 
 </main> <!-- /main -->
-<button id="toc-toggle">☰ Contents</button>
+<button id="toc-toggle" style="display:none;">☰ Contents</button>
 
 <script>
   const toc = document.querySelector('#quarto-margin-sidebar, #quarto-sidebar, nav.sidebar, .toc, #TOC');
   const btn = document.getElementById('toc-toggle');
 
   if (btn && toc) {
+    // Only show button if there are headings/links inside the TOC
+    const tocItems = toc.querySelectorAll("a");
+    if (tocItems.length > 0) {
+      btn.style.display = "inline-block";
+    } else {
+      toc.style.display = "none"; // hide TOC if empty
+    }
+
     // Toggle sidebar when clicking the button
     btn.addEventListener('click', (event) => {
       event.stopPropagation(); // prevent immediate closing
@@ -292,8 +300,20 @@ You can then run different pipelines by referencing their location at nf-core:<b
         document.body.classList.remove('toc-open');
       }
     });
+
+    // Auto-hide sidebar if mouse is inactive for 3 seconds
+    let hideTimeout;
+    document.addEventListener('mousemove', () => {
+      clearTimeout(hideTimeout);
+      if (document.body.classList.contains('toc-open')) {
+        hideTimeout = setTimeout(() => {
+          document.body.classList.remove('toc-open');
+        }, 3000); // 3000 ms = 3 seconds
+      }
+    });
   }
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

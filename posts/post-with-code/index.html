@@ -9,7 +9,7 @@
 <meta name="author" content="Harlow Malloc">
 <meta name="dcterms.date" content="2025-10-05">
 
-<title>Post With Code – Applied Bioinformatics Blog</title>
+<title>Post With Code – Applied-Bioinfo-Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-07262f644dbc48257d98892a905538f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-9edfe3277c4691468bf4428da2f8c669.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Applied Bioinformatics Blog</span>
+    <span class="navbar-title">Applied-Bioinfo-Blog</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -170,31 +170,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 </main> <!-- /main -->
-<button id="toc-toggle">☰ Contents</button>
-
-<script>
-  const toc = document.querySelector('#quarto-margin-sidebar, #quarto-sidebar, nav.sidebar, .toc, #TOC');
-  const btn = document.getElementById('toc-toggle');
-
-  if (btn && toc) {
-    // Toggle sidebar when clicking the button
-    btn.addEventListener('click', (event) => {
-      event.stopPropagation(); // prevent immediate closing
-      document.body.classList.toggle('toc-open');
-    });
-
-    // Close sidebar when clicking outside of it
-    document.addEventListener('click', (event) => {
-      const clickedInsideSidebar = toc.contains(event.target);
-      const clickedButton = btn.contains(event.target);
-      const sidebarIsOpen = document.body.classList.contains('toc-open');
-      
-      if (sidebarIsOpen && !clickedInsideSidebar && !clickedButton) {
-        document.body.classList.remove('toc-open');
-      }
-    });
-  }
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -268,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/larissa-k-g\.github\.io\/MedBioInfo-Blog\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
