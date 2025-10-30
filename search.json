@@ -39,7 +39,7 @@
     "href": "posts/ggplot2/index.html",
     "title": "ggplot for data visualization",
     "section": "",
-    "text": "A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choose from Rstudio provides a very versitile one called “ggplot”. ggplot is like a swiss army knife when it comes to generating plots and graphs. Anything from simple dot plots to more complex heatmaps, scatterplots or UMAPs can be done using ggplot.\n\nA basic tutorial\nTo learn the basic syntax and get started with the ggplot you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden."
+    "text": "A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choose from Rstudio provides a very versitile one called “ggplot”. ggplot is like a swiss army knife when it comes to generating plots and graphs. Anything from simple dot plots to more complex heatmaps, scatterplots or UMAPs can be done using ggplot.\n\nA basic tutorial\nTo learn the basic syntax and get started with ggplot you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden."
   },
   {
     "objectID": "posts/Quality-control/index.html",
