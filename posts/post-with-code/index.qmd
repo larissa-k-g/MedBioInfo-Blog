@@ -1,9 +1,0 @@
----
-title: "Post With Code"
-author: "Harlow Malloc"
-date: "2025-10-05"
-categories: [news, code, analysis]
-image: "image.jpg"
----
-executable code in quarto e.g. using bash needs a python or something environment, otherwise quarto doesn't now how to execute it.
-This is a post with executable code.

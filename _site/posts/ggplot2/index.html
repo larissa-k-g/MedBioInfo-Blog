@@ -150,7 +150,13 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Content</h2>
+   
+  <ul>
+  <li><a href="#a-basic-tutorial" id="toc-a-basic-tutorial" class="nav-link active" data-scroll-target="#a-basic-tutorial">A basic tutorial</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -164,19 +170,32 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="deng-xiang--WXQm_NTK0U-unsplash.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"><br>
-A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choice from a R studios provides a very versitile one called “ggplot”. ggplot is like a swiss knive when it comes to generating plots and graphs. Anything from simple dot plots to complex heatmaps and scatterplots can be done using ggplot. To learn the basic syntax and get started with the basics you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden.<br>
-<!-- more --> <iframe src="https://nbisweden.github.io/raukr-2023/labs/ggplot/" width="100%" height="500" style="border: 1px solid #ccc; border-radius: 10px;"> </iframe></p>
+A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choose from Rstudio provides a very versitile one called “ggplot”. ggplot is like a swiss army knife when it comes to generating plots and graphs. Anything from simple dot plots to more complex heatmaps, scatterplots or UMAPs can be done using ggplot.</p>
+<section id="a-basic-tutorial" class="level4">
+<h4 class="anchored" data-anchor-id="a-basic-tutorial">A basic tutorial</h4>
+<p>To learn the basic syntax and get started with the basics you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden.</p>
+<iframe src="https://nbisweden.github.io/raukr-2023/labs/ggplot/" width="100%" height="500" style="border: 1px solid #ccc; border-radius: 10px;">
+</iframe>
 
 
+</section>
 
 </main> <!-- /main -->
-<button id="toc-toggle">☰ Contents</button>
+<button id="toc-toggle" style="display:none;">☰ Contents</button>
 
 <script>
   const toc = document.querySelector('#quarto-margin-sidebar, #quarto-sidebar, nav.sidebar, .toc, #TOC');
   const btn = document.getElementById('toc-toggle');
 
   if (btn && toc) {
+    // Only show button if there are headings/links inside the TOC
+    const tocItems = toc.querySelectorAll("a");
+    if (tocItems.length > 0) {
+      btn.style.display = "inline-block";
+    } else {
+      toc.style.display = "none"; // hide TOC if empty
+    }
+
     // Toggle sidebar when clicking the button
     btn.addEventListener('click', (event) => {
       event.stopPropagation(); // prevent immediate closing
@@ -193,8 +212,20 @@ A central part of the work as a researcher is to present your findings in an app
         document.body.classList.remove('toc-open');
       }
     });
+
+    // Auto-hide sidebar if mouse is inactive for 3 seconds
+    let hideTimeout;
+    document.addEventListener('mousemove', () => {
+      clearTimeout(hideTimeout);
+      if (document.body.classList.contains('toc-open')) {
+        hideTimeout = setTimeout(() => {
+          document.body.classList.remove('toc-open');
+        }, 3000); // 3000 ms = 3 seconds
+      }
+    });
   }
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

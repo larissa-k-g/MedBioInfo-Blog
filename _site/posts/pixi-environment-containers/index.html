@@ -171,11 +171,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><img src="pixi2025-10-07.png" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
-<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but what does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
+<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analysis. To ensure that the same script runs the same way anywhere else, we can use environments and containers. That sounds great, but what does it actually mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to each other, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything: tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
 <section id="pixi---environment-manager" class="level4">
 <h4 class="anchored" data-anchor-id="pixi---environment-manager">Pixi - Environment manager</h4>
 <ol type="1">
-<li>To start, install pixie:<br>
+<li>To start, install pixi:<br>
 <code>$curl -fsSL https://pixi.sh/install.sh | sh</code></li>
 <li>Create a new project directory</li>
 <li>Add conda-forge and bioconda channels using -c flag:<br>
@@ -192,35 +192,35 @@ ul.task-list li input[type="checkbox"] {
 <code>$pixi add Quarto</code><br>
 e.g.&nbsp;to add Quarto
 <p style="margin-left:2em;">
--&gt; to see if it was installed properly you can either test it with the command <code>$pixi run quarto --help</code>or go back to the .toml file and find that Quarto has been added as a dependency.
+-&gt; to see if it was installed properly you can either test it with the command <code>$pixi run quarto --help</code>or go back to the .toml file and verify that Quarto has been added as a dependency.
 </p></li>
-<li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
+<li>Now that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
 
 <p style="margin-left:2em;">
 -&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc.
 </p>
-<strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
+<strong>Note:</strong> DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</li>
 <li>To use your tool you can use:<br>
 <code>$pixi run quarto --help</code><br>
-<strong>Pro-Tip:</strong> You can also enter the environment using <code>$pixi shell</code>. This allows you to forget about pixi and just run your commands as “normally” e.g.&nbsp;`$quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
+<strong>Pro Tip:</strong> You can also enter the environment using <code>$pixi shell</code>. This allows you to forget about pixi and just run your commands “normally” e.g.&nbsp;`$quarto –help. To leave it again, just type exit into the command line and press enter.</li>
 </ol>
 </section>
 <section id="container-images" class="level4">
 <h4 class="anchored" data-anchor-id="container-images">Container images</h4>
-<p>To ensure that your analysis are easily reproducible, indepentent of when and where they are run you can use container images. These are containers that have been created by other people. Here we are using Apptainer as a container, as it is already installed on the course server, however Docker was also recommended. Two common platforms to download container images from are Dockerhub and Seqera.</p>
+<p>To ensure that your analysis are easily reproducible, indepentent of when and where they are run you can use container images. These, are containers that have been created by other people. Here, we are using Apptainer as a container, as it is already installed on the course server, however Docker was also recommended. Two common platforms to download container images from are Dockerhub and Seqera.</p>
 <ol type="1">
 <li>Dockerhub provides the first tool that we want to install: VCFtool, a software created for manipulation and quering of VCF files. It’s like a Swiss Army knife for VCF files - filter, summerize, analyze qenetic/sequencing data. To install it use:<br>
 <code>$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1</code>
 <p style="margin-left:2em;">
--&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is te dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.
+-&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is the dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.
 </p></li>
-<li>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those reposetories. Change the Container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</li>
-<li>Click on get Container, then copy paste the text from the website to the your system:<br>
+<li>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those repository. Change the container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</li>
+<li>Click on get container, then copy paste the text from the website to your system:<br>
 <code>$apptainer pull fastqc:0.12.1.sif oras://community.wave.seqera.io/library/vcftools:0.1.17--b541aa8d9f9213f9</code>
 <p style="margin-left:2em;">
 oras is used, as this is the registry that is being pulled from in this case
 </p>
-Here, we are pulling from the oras registry rather then docker which is why we use oras:// isntead.</li>
+Here, we are pulling from the oras registry rather then docker which is why we use oras:// instead.</li>
 <li>To run use: <code>$apptainer exec fastqc:0.12.1.sif vcftools --version</code></li>
 </ol>
 
