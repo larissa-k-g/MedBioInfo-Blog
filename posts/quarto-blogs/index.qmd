@@ -10,7 +10,7 @@ First, create a new folder for a new blog entry. Then create an index.qmd file w
 Second, add your text and adjust the title etc. In short: make your entry.
 To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.  
 
-**!Pro Tip: **To make paragraphs end the line with two spaces. 
+**Pro Tip: **To make paragraphs end the line with two spaces. 
 <p style="margin-left:2em;"> For an indentation try `<p style="margin-left:2em;"> Your indented text </p>` </p>
 
 ----------------------
