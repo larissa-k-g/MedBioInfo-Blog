@@ -3,7 +3,7 @@ project:
 
 website:
   description: "A blog on getting started with bioinformatics"
-  title: "Applied-Bioinfo-Blog"
+  title: "Applied Bioinformatics Blog"
   navbar:
     right:
       - about.qmd

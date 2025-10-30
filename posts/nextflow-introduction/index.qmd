@@ -1,7 +1,7 @@
 ---
 title: "Getting started with nextflow and nf-core"
 author: "Larissa Kahnwald"
-date: "2025-10-08"
+date: "2025-10-09"
 categories: [news]
 ---
 ![](pipelines.jpg){style="float:right; width:45%; margin:0 0 1rem 1rem;"}  

@@ -170,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.</p>
-<strong>!Pro Tip: </strong>To make paragraphs end the line with two spaces.
+<strong>Pro Tip: </strong>To make paragraphs end the line with two spaces.
 <p style="margin-left:2em;">
 For an indentation try <code>&lt;p style="margin-left:2em;"&gt; Your indented text &lt;/p&gt;</code>
 </p>
@@ -188,11 +188,29 @@ In case of this error: “Updates were rejected because the remote contains work
 
 </main> <!-- /main -->
 <button id="toc-toggle">☰ Contents</button>
+
 <script>
-  const btn = document.getElementById("toc-toggle");
-  btn.addEventListener("click", () => {
-    document.body.classList.toggle("toc-hidden");
-  });
+  const toc = document.querySelector('#quarto-margin-sidebar, #quarto-sidebar, nav.sidebar, .toc, #TOC');
+  const btn = document.getElementById('toc-toggle');
+
+  if (btn && toc) {
+    // Toggle sidebar when clicking the button
+    btn.addEventListener('click', (event) => {
+      event.stopPropagation(); // prevent immediate closing
+      document.body.classList.toggle('toc-open');
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (event) => {
+      const clickedInsideSidebar = toc.contains(event.target);
+      const clickedButton = btn.contains(event.target);
+      const sidebarIsOpen = document.body.classList.contains('toc-open');
+      
+      if (sidebarIsOpen && !clickedInsideSidebar && !clickedButton) {
+        document.body.classList.remove('toc-open');
+      }
+    });
+  }
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

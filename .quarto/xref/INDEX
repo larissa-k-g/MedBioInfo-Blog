@@ -31,5 +31,8 @@
   },
   "posts/pixi-environment-containers/index.qmd": {
     "index.html": "e91dae72"
+  },
+  "posts/ggplot2/index.qmd": {
+    "index.html": "b741a1da"
   }
 }
