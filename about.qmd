@@ -11,4 +11,4 @@ about:
       text: Github
       href: https://github.com/larissa-k-g
 ---
-My name is Larissa and I am a PhD student at Stockholm University. As part of Prof. Eva Hedlunds research team I concentrate on understanding the motorneuron disease ALS. Most of you probably know it from the "Ice-bucket-challenge" or from the famous physicist Stephen Hawking. On this blog you can follow along if you want to get to know more abut ongoing research in ALS and neuroscience in general. You will also get to see my first attemps to manage different bioinformatic techniques.
+My name is Larissa and I am a PhD student at Stockholm University. As part of Prof. Eva Hedlunds research team, I concentrate on understanding the motor neuron disease ALS. Most of you probably know it from the "Ice-bucket-challenge" or from the famous physicist Stephen Hawking. On this blog you can follow along if you want to get to know more abut ongoing research in ALS and neuroscience in general. You will also get to see my first attemps to manage different bioinformatic techniques.

@@ -6,9 +6,9 @@ categories: [news]
 ---
 ![](pipelines.jpg){style="float:right; width:45%; margin:0 0 1rem 1rem;"}  
 
-In the last Blog we learned that to use tools as e.g. [FastQC and MultiQC](https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc) we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsitstencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used, to provide pipelines, that allow easier and consistnent workflow and sharing. 
-[Nextflow](https://nextflow.io/docs/latest/#nextflow) is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error, if some part of the pipline needs deebugging. It comes with build-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.  
-Fundamentally, Nextflow provieds channels, tracking in- and output that connect different modules/tools/processes which are defined in scripts, keeping each process independet. This allows that each script could be written in a differentn scripting language if wanted. Nextflow keeps track, navigates and even allows to parallelize the flow of your data in a time-efficient manner, making it highly scalable as well.  
+In the last Blog we learned that to use tools as e.g. [FastQC and MultiQC](https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc) we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsistencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used to provide pipelines that allow easier and consistnent workflow and sharing. 
+[Nextflow](https://nextflow.io/docs/latest/#nextflow) is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error if some part of the pipline needs deebugging. It comes with built-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end, only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.  
+Fundamentally, Nextflow provides channels, tracking in- and output that connect different modules/tools/processes which are defined in scripts, keeping each process independent. Thus, if wanted each script could be written in a different scripting language. Nextflow keeps track, navigates and even allows to parallelize the flow of your data in a time-efficient manner, making it highly scalable as well.  
 
 #### Before starting   
 -> Before getting started set up a screen session, with Pixi as environment manager and add nextflow to your environment:   
@@ -28,7 +28,7 @@ Let's go step by step through how a [.nf file](https://www.nextflow.io/docs/late
 params.greeting = 'Hello world!' 
 ```   
 
-3. In the next part the channel "greeting_ch" is being initalized. The channel connects the input (so the value of the greeting parameter) to the first process, thus it defines the input of the workflow.   
+3. Next, the channel "greeting_ch" is being initalized. The channel connects the input (so the value of the greeting parameter) to the first process, thus it defines the input of the workflow.   
 ```nextflow  
 greeting_ch = Channel.of(params.greeting)
 ```  
@@ -70,7 +70,7 @@ process CONVERTTOUPPER {
 ```  
 **Remark:** The input files are processed parallely, thus the output could be in any order. For this example this would mean that the final output could be "HELLO WORLD!" or "WORLD! HELLO"  
 
-6. Since the order in which the process blocks are defined in the script does not matter when working with nextflow, we define the workflow scope at the end of the script. Here it is defined, which process block is executed (or not) and in which order. Here, the first process to be executed is splitletters, which uses the greeting_ch as its input. The output files will then be emitted into a new channel called letters_ch. The next process "Converttoupper" uses this channel as input. "flatten()" makes sure, that each file will be processed individually, so that the input is not a grouped list. Converttouper will process the files (lower case letters to upper case ones) and send the output into results_ch. Finally, the content of the results channel will be printed directly to the console. "{it}" defines that each element will be displayed immediately.
+6. Since the order in which the process blocks are defined in the script does not matter when working with nextflow, we define the workflow scope at the end of the script. Here it is defined, which process block is executed (or not) and in which order. Here, the first process to be executed is splitletters, which uses the greeting_ch as its input. The output files will then be emitted into a new channel called letters_ch. The next process "Converttoupper" uses this channel as input. "flatten()" makes sure, that each file will be processed individually, so that the input is not a grouped list. Converttouper will process the files (lower case letters to upper case ones) and send the output into results_ch. Finally, the content of the results channel will be printed directly to the console. "{ it }" defines that each element will be displayed immediately.
 
 ```nextflow 
 workflow {
@@ -86,23 +86,23 @@ If you go back to the script and change some parts you can use the command:
 `$ pixi run nextflow run filename.nf -resume` 
 Nextflow will skip all the process that were not modified and use the cached results from the previous run. This allows you to easily test and quickly modify the workflow.  
 
-**Remark:** Nexflow follows an underlying hierachy, which defines that any parameter specified on the command line will over write the specifications defined in the script. Thus, we can modify e.g. the input string in the execution command to process the phrase "Bonjour le monde!" rather then "Hello World!":  
+**Remark:** Nexflow follows an underlying hierachy, which defines that any parameter specified on the command line will overwrite the specifications defined in the script. Thus, we can modify e.g. the input string in the execution command to process the phrase "Bonjour le monde!" rather then "Hello World!":  
 `$pixi run nextflow run hello.nf -resume --greeting 'Bonjour le monde!'`   
 
 #### Cleanup 
 All results that nexflow executed are automatically saved to folder `$PWD/work`. You can view the execution logs and runtimes from your current. directory with:  
 `$pixi run nextflow log`  
-Since this can take up a lot of space you should clean the chached results and the work directory regularly. This can be done manually, or simply be commanding:  
+Since this can take up a lot of space, you should clean the chached results and the work directory regularly. This can be done manually, or simply be commanding:  
 `$pixi run nextflow clean`  
 or also clean all previous runs, before running it again:  
 `$pixi run nextflow clean -before <RUN NAME> -f`
   
 
 #### nf-core 
-nf-core is a community where nexflow modules and piplines a being shared, maintained and developped. It offers a variety of different piplines. However, you should always try to understand if they are relevant to your project and if the process matches what you understand it to be, rather then blindly apply them for your data processing. Understanding them does not only secure that they are suited to be applied in your procesing, but you ca also optimize them to your needs.  
+nf-core is a community where nexflow modules and piplines are being shared, maintained and developped. It offers a variety of different piplines. However, you should always try to understand if they are relevant to your project and if the process matches what you understand it to be, rather then blindly apply them for your data processing. Understanding them does not only secure that they are suited to be applied in your procesing, but you can also optimize them to your needs.  
 You can also seek help at the weekly online helpdesk, view training material and get tips and tricks on proper documentation and development.  
-Each website on a pipeline is set up with a "usage" tap which describes the piplines function and the input file. Under "Parameters" details to set up the pipline are given. The Output tap can help to interpret the produced output. To add nf-core pipelines to your process start by installing it to your environment, together with nextflow:  
+Each website on a pipeline is set up with a "usage" tab which describes the piplines function and the input file. Under "Parameters" details to set up the pipline are given. The "output" tab can help to interpret the produced output. To add nf-core pipelines to your process start by installing it to your environment, together with nextflow:  
 `$ pixi add nextflow nf-core`  
-You can then run differnt piplines by referencing their location at nf-core:  
+You can then run different pipelines by referencing their location at nf-core:  
 `$pixi run nextflow run nf-core/sarek -profile test --outdir sarek_test -c server.config` 
 In this example the Sarek pipeline was used, a test profile was used which uses build-in test data, the results will be safed in a directory called sarek_test. The configuration file's name and location for the server is defined with option -c.  

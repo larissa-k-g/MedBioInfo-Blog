@@ -4,22 +4,22 @@ author: "Larissa Kahnwald"
 date: "2025-10-06"
 categories: [news]
 ---
-![Getting started](patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg){style="float:right; width:45%; margin:0 0 1rem 1rem;"}
+![](patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg){style="float:right; width:45%; margin:0 0 1rem 1rem;"}
 
-First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe
+First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options.  
 Second, add your text and adjust the title etc. In short: make your entry.
-To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.  
+To check in between you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.  
 
 **Pro Tip: **To make paragraphs end the line with two spaces. 
 <p style="margin-left:2em;"> For an indentation try `<p style="margin-left:2em;"> Your indented text </p>` </p>
 
 ----------------------
 
-To actually safe and publish go into the Terminal again and  
+To actually save and publish go into the terminal again and  
 `$git add --all`  
 `$git commit -m "Remember to leave a little comment of what the changes that you made were"`  
 `$git push origin main`  
-In case of this error: "Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing" try:  
+In case of this error: "Updates were rejected because the remote contains work that you do | hint: not have locally. This is usually caused by another repository pushing" try:  
 `$git pull origin main` This should merge the remote updates with your local copy, then try push again.  
 `$git push origin main`.
 
