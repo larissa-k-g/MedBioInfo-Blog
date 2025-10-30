@@ -22,8 +22,8 @@
 
 
 <p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/ggplot2/deng-xiang--WXQm_NTK0U-unsplash.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"><br>
-A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choice from a R studios provides a very versitile one called “ggplot”. ggplot is like a swiss knive when it comes to generating plots and graphs. Anything from simple dot plots to complex heatmaps and scatterplots can be done using ggplot. To learn the basic syntax and get started with the basics you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden.<br>
-<iframe src="https://nbisweden.github.io/raukr-2023/labs/ggplot/" width="100%" height="500" style="border: 1px solid #ccc; border-radius: 10px;"> </iframe></p>
+A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choose from Rstudio provides a very versitile one called “ggplot”. ggplot is like a swiss army knife when it comes to generating plots and graphs. Anything from simple dot plots to more complex heatmaps, scatterplots or UMAPs can be done using ggplot. To learn the basic syntax and get started with the basics you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden.<br>
+<!-- more --> <iframe src="https://nbisweden.github.io/raukr-2023/labs/ggplot/" width="100%" height="500" style="border: 1px solid #ccc; border-radius: 10px;"> </iframe></p>
 
 
 
@@ -43,8 +43,8 @@ A central part of the work as a researcher is to present your findings in an app
 
 
 <p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/nextflow-introduction/pipelines.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
-<p>In the last Blog we learned that to use tools as e.g.&nbsp;<a href="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc">FastQC and MultiQC</a> we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsitstencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used, to provide pipelines, that allow easier and consistnent workflow and sharing. <a href="https://nextflow.io/docs/latest/#nextflow">Nextflow</a> is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error, if some part of the pipline needs deebugging. It comes with build-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.<br>
-Fundamentally, Nextflow provieds channels, tracking in- and output that connect different modules/tools/processes which are defined in scripts, keeping each process independet. This allows that each script could be written in a differentn scripting language if wanted. Nextflow keeps track, navigates and even allows to parallelize the flow of your data in a time-efficient manner, making it highly scalable as well.</p>
+<p>In the last Blog we learned that to use tools as e.g.&nbsp;<a href="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/#fastqc">FastQC and MultiQC</a> we need a script with the instructions on how that tool should be used. However, if multiple tools are involved during the progression of a project each tool would need to be started one by one. This is not only very tedious, but also risks inconsistencies in the workflow and reduces the reproducibility. Therefore, workflow managers are used to provide pipelines that allow easier and consistnent workflow and sharing. <a href="https://nextflow.io/docs/latest/#nextflow">Nextflow</a> is an open source workflow manager which not only creates an automated pipeline but also allows you to resume from the point of error if some part of the pipline needs deebugging. It comes with built-in git version control and allows any code language. Generally, workflow managers can run containers as well, which increases the shareability even more. No need to install any softwares and version conflicts are eliminated as well! In the end, only one command is needed to execute a whole sequence of scripts and tools, which makes it more accessible to researcher with less bioinformatics experience.<br>
+Fundamentally, Nextflow provides channels, tracking in- and output that connect different modules/tools/processes which are defined in scripts, keeping each process independent. Thus, if wanted each script could be written in a different scripting language. Nextflow keeps track, navigates and even allows to parallelize the flow of your data in a time-efficient manner, making it highly scalable as well.</p>
 <section id="before-starting" class="level4">
 <h4 class="anchored" data-anchor-id="before-starting">Before starting</h4>
 <p>-&gt; Before getting started set up a screen session, with Pixi as environment manager and add nextflow to your environment:<br>
@@ -63,7 +63,7 @@ Fundamentally, Nextflow provieds channels, tracking in- and output that connect 
 </ol>
 <pre class="nextflow"><code>params.greeting = 'Hello world!' </code></pre>
 <ol start="3" type="1">
-<li>In the next part the channel “greeting_ch” is being initalized. The channel connects the input (so the value of the greeting parameter) to the first process, thus it defines the input of the workflow.<br>
+<li>Next, the channel “greeting_ch” is being initalized. The channel connects the input (so the value of the greeting parameter) to the first process, thus it defines the input of the workflow.<br>
 </li>
 </ol>
 <pre class="nextflow"><code>greeting_ch = Channel.of(params.greeting)</code></pre>
@@ -100,7 +100,7 @@ Fundamentally, Nextflow provieds channels, tracking in- and output that connect 
 }   </code></pre>
 <p><strong>Remark:</strong> The input files are processed parallely, thus the output could be in any order. For this example this would mean that the final output could be “HELLO WORLD!” or “WORLD! HELLO”</p>
 <ol start="6" type="1">
-<li>Since the order in which the process blocks are defined in the script does not matter when working with nextflow, we define the workflow scope at the end of the script. Here it is defined, which process block is executed (or not) and in which order. Here, the first process to be executed is splitletters, which uses the greeting_ch as its input. The output files will then be emitted into a new channel called letters_ch.&nbsp;The next process “Converttoupper” uses this channel as input. “flatten()” makes sure, that each file will be processed individually, so that the input is not a grouped list. Converttouper will process the files (lower case letters to upper case ones) and send the output into results_ch.&nbsp;Finally, the content of the results channel will be printed directly to the console. “{it}” defines that each element will be displayed immediately.</li>
+<li>Since the order in which the process blocks are defined in the script does not matter when working with nextflow, we define the workflow scope at the end of the script. Here it is defined, which process block is executed (or not) and in which order. Here, the first process to be executed is splitletters, which uses the greeting_ch as its input. The output files will then be emitted into a new channel called letters_ch.&nbsp;The next process “Converttoupper” uses this channel as input. “flatten()” makes sure, that each file will be processed individually, so that the input is not a grouped list. Converttouper will process the files (lower case letters to upper case ones) and send the output into results_ch.&nbsp;Finally, the content of the results channel will be printed directly to the console. “{ it }” defines that each element will be displayed immediately.</li>
 </ol>
 <pre class="nextflow"><code>workflow {
     letters_ch = SPLITLETTERS(greeting_ch)
@@ -113,25 +113,25 @@ Fundamentally, Nextflow provieds channels, tracking in- and output that connect 
 <p>To run the script use the environment manager that was set up in the beginning:<br>
 <code>$ pixi run nextflow run filename.nf</code> If you go back to the script and change some parts you can use the command:<br>
 <code>$ pixi run nextflow run filename.nf -resume</code> Nextflow will skip all the process that were not modified and use the cached results from the previous run. This allows you to easily test and quickly modify the workflow.</p>
-<p><strong>Remark:</strong> Nexflow follows an underlying hierachy, which defines that any parameter specified on the command line will over write the specifications defined in the script. Thus, we can modify e.g.&nbsp;the input string in the execution command to process the phrase “Bonjour le monde!” rather then “Hello World!”:<br>
+<p><strong>Remark:</strong> Nexflow follows an underlying hierachy, which defines that any parameter specified on the command line will overwrite the specifications defined in the script. Thus, we can modify e.g.&nbsp;the input string in the execution command to process the phrase “Bonjour le monde!” rather then “Hello World!”:<br>
 <code>$pixi run nextflow run hello.nf -resume --greeting 'Bonjour le monde!'</code></p>
 </section>
 <section id="cleanup" class="level4">
 <h4 class="anchored" data-anchor-id="cleanup">Cleanup</h4>
 <p>All results that nexflow executed are automatically saved to folder <code>$PWD/work</code>. You can view the execution logs and runtimes from your current. directory with:<br>
 <code>$pixi run nextflow log</code><br>
-Since this can take up a lot of space you should clean the chached results and the work directory regularly. This can be done manually, or simply be commanding:<br>
+Since this can take up a lot of space, you should clean the chached results and the work directory regularly. This can be done manually, or simply be commanding:<br>
 <code>$pixi run nextflow clean</code><br>
 or also clean all previous runs, before running it again:<br>
 <code>$pixi run nextflow clean -before &lt;RUN NAME&gt; -f</code></p>
 </section>
 <section id="nf-core" class="level4">
 <h4 class="anchored" data-anchor-id="nf-core">nf-core</h4>
-<p>nf-core is a community where nexflow modules and piplines a being shared, maintained and developped. It offers a variety of different piplines. However, you should always try to understand if they are relevant to your project and if the process matches what you understand it to be, rather then blindly apply them for your data processing. Understanding them does not only secure that they are suited to be applied in your procesing, but you ca also optimize them to your needs.<br>
+<p>nf-core is a community where nexflow modules and piplines are being shared, maintained and developped. It offers a variety of different piplines. However, you should always try to understand if they are relevant to your project and if the process matches what you understand it to be, rather then blindly apply them for your data processing. Understanding them does not only secure that they are suited to be applied in your procesing, but you can also optimize them to your needs.<br>
 You can also seek help at the weekly online helpdesk, view training material and get tips and tricks on proper documentation and development.<br>
-Each website on a pipeline is set up with a “usage” tap which describes the piplines function and the input file. Under “Parameters” details to set up the pipline are given. The Output tap can help to interpret the produced output. To add nf-core pipelines to your process start by installing it to your environment, together with nextflow:<br>
+Each website on a pipeline is set up with a “usage” tab which describes the piplines function and the input file. Under “Parameters” details to set up the pipline are given. The “output” tab can help to interpret the produced output. To add nf-core pipelines to your process start by installing it to your environment, together with nextflow:<br>
 <code>$ pixi add nextflow nf-core</code><br>
-You can then run differnt piplines by referencing their location at nf-core:<br>
+You can then run different pipelines by referencing their location at nf-core:<br>
 <code>$pixi run nextflow run nf-core/sarek -profile test --outdir sarek_test -c server.config</code> In this example the Sarek pipeline was used, a test profile was used which uses build-in test data, the results will be safed in a directory called sarek_test. The configuration file’s name and location for the server is defined with option -c.&nbsp;</p>
 
 
@@ -153,17 +153,17 @@ You can then run differnt piplines by referencing their location at nf-core:<br>
 
 
 <p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/Quality-control/DNA.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
-<p>Determining the quality of your data is key, in order to know if your result is trustworthy or not, should you actually be drawing any conlcusions from your experiment in the first place?<br>
-Quaility control is therefore central, to get to know your data and to understand what you are working with. For sequencing data we can use the software FastQC to check the raw data, before starting a lengthy analysis.<br>
-FastQC is especially valuable if we do high-thoughput sequencing and thus have a lot of data to juggle. A lot of data also means that analysis, might run for several hours, even on a supercomputer. To protect your session from being interupted due to connection issues or because the laptop is accidentally being closed; we can use GNU Screen, a terminal multiplexer. Screen enables to start several independant sessions and even to continue a running process if we disconnect. It basically creates virtual terminals inside our session. Another system we need is a job scheduler. SLURM is such a management system, meaning that it can start and control jobs for you. It is used in computer clusters to organize the queing of different jobs and SLURM also automatically substracts the running time from your project account. So, now that we have our job secured with a screen session and Slurm takes care of the resources we can move on to set the quality control.<br>
-The best way to keep track of all the instructions is to define them in sequence in a script. To this end, create a new directory for all the scripts within our project folder and create a <em>.sh</em> file for our instructions. Since SLURM is our resoource management we use sbatch to submit a batch script.<br>
-To do a quality control for your seqeuncing data you can use FastQC. FastQC is a tool, that is suitable for high-throughput sequencing data. It provides information on the general quality on your reads, visualizes the quiality score distribution, as well as the share of each base per sequence. Using FastQC will allow you to identify contaminations due to adapters or other sequences which are overrepresented. It will give you a quality score for an entire sample, instead of single reads. However, the output will still be one file per sample. Therefore, if you need to analyze several samples in one project you can use MultiQC to summerize the output from FastQC.</p>
+<p>Determining the quality of your data is key, in order to know if your result is trustworthy or not and if you should actually be drawing any conclusions from your experiment in the first place?<br>
+Quaility control is therefore central to get to know your data and to understand what you are working with. For sequencing data we can use the software FastQC to check the raw data, before starting a lengthy analysis.<br>
+FastQC is especially valuable if we do high-throughput sequencing and thus have a lot of data to juggle. A lot of data also means that the analysis, might run for several hours, even on a supercomputer. To protect your session from being interrupted due to connection issues or because the laptop is accidentally being closed; we can use GNU Screen, a terminal multiplexer. Screen enables to start several independent sessions and even to continue a running process if we disconnect. It basically creates virtual terminals inside our session. Another system we need is a job scheduler. SLURM is such a management system, meaning that it can start and control jobs for you. It is used in computer clusters to organize the queing of different jobs and SLURM also automatically substracts the running time from your project account. So, now that we have our job secured with a screen session and Slurm takes care of the resources we can move on to define the quality control process.<br>
+The best way to keep track of all the instructions is to define them in sequence in a script. To this end, create a new directory for all the scripts within our project folder and create a <em>.sh</em> file for our instructions. Since SLURM is our resource management we use sbatch to submit a batch script.<br>
+FastQC is a tool that is suitable for high-throughput sequencing data. It provides information on the general quality of your reads, visualizes the quality score distribution, as well as the share of each base per sequence. Using FastQC will allow you to identify contaminations due to adapters or other sequences which are overrepresented. It will give you a quality score for an entire sample instead of single reads. However, the output will still be one file per sample. Therefore, if you need to analyze several samples in one project you can use MultiQC to summerize the output from FastQC.</p>
 <section id="screen-session" class="level4">
 <h4 class="anchored" data-anchor-id="screen-session">Screen Session</h4>
 <ol type="1">
 <li>Start by naming a session<br>
 <code>$screen -S name</code></li>
-<li>Start your process, then detach from the screen any time and let it run independently. You can then log out or start toher screens and come back to this process at a later time.<br>
+<li>Start your process, then detach from the screen any time and let it run independently. You can then log out or start other screens and come back to this process at a later time.<br>
 <code>Ctrl+ a d</code><br>
 </li>
 <li>Simply get a list of all open screen session:<br>
@@ -182,8 +182,7 @@ Then, reattach to the selected session:<br>
 <li>to check if it is installed: <code>$ pixi run fastqc --help</code></li>
 <li>to install:<br>
 <code>$pixi init -c conda-forge -c bioconda</code><br>
-<code>$pixi add fastqc</code><br>
-<code>$pixi run fastqc --help</code></li>
+<code>$pixi add fastqc</code></li>
 </ul>
 </section>
 <section id="multiqc" class="level4">
@@ -237,10 +236,10 @@ background-color: null;
 font-style: inherit;">--noextract</span> ../data/<span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">*</span>fastq.gz</span></code></pre></div></div>
-<p>2’. For MultiQC set it up like this</p>
+<p>2’. For MultiQC set it up like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">#! /bin/bash -l</span></span>
+font-style: inherit;">#!/bin/bash -l</span></span>
 <span id="cb2-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#SBATCH -A project_ID</span></span>
@@ -262,7 +261,7 @@ font-style: inherit;">-o</span> ../multiqc ../fastqc</span></code></pre></div></
 </p>
 <p style="margin-left:2em;">
 </p><p>-&gt; you can verify that everything is running properly by checking your job’s status: <code>$ squeue -u &lt;user-name&gt;</code></p></li>
-<li><p>When the job is completed you can find the output files in the same folder, where you where in, when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.</p></li>
+<li><p>When the job is completed you can find the output files in the same folder where you where in when you submitted the job. Per default FastQC and MultiQC will give out an .html file which you can download and open locally.</p></li>
 </ol>
 </section>
 <section id="containers" class="level4">
@@ -313,11 +312,11 @@ font-style: inherit;">*</span>fastq.gz</span></code></pre></div></div>
 
 
 <p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/pixi-environment-containers/pixi2025-10-07.png" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
-<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analyisis. To ensure that the same script runs the same way anywhere else we can use environments and containers. That sounds great, but what does that mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to eachother, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
+<p>In science reproducibility and accessibility are two key factors. This does not only apply during the data collection phase of a project but particularly also during its analysis. To ensure that the same script runs the same way anywhere else, we can use environments and containers. That sounds great, but what does it actually mean? Environments are like isolated spaces where you can install all the tools and packages that you need for a specific analysis. It’s basically like a lab bench that you set up with everything you need, chemicals, pipettes etc. for a specific experiment. Environment managers, such as <strong>Pixi</strong>, make it possible to have multiple different set ups right next to each other, without one spilling over to the other one and even support you in finding the tools that you want. Containers on the other hand are like a bench on wheels. They contain everything: tools, chemicals, hoods, chairs, the bench itself the protocol etc. They are easily shareable and the next person can just open them and run the analysis on their dataset again.</p>
 <section id="pixi---environment-manager" class="level4">
 <h4 class="anchored" data-anchor-id="pixi---environment-manager">Pixi - Environment manager</h4>
 <ol type="1">
-<li>To start, install pixie:<br>
+<li>To start, install pixi:<br>
 <code>$curl -fsSL https://pixi.sh/install.sh | sh</code></li>
 <li>Create a new project directory</li>
 <li>Add conda-forge and bioconda channels using -c flag:<br>
@@ -334,35 +333,35 @@ font-style: inherit;">*</span>fastq.gz</span></code></pre></div></div>
 <code>$pixi add Quarto</code><br>
 e.g.&nbsp;to add Quarto
 <p style="margin-left:2em;">
--&gt; to see if it was installed properly you can either test it with the command <code>$pixi run quarto --help</code>or go back to the .toml file and find that Quarto has been added as a dependency.
+-&gt; to see if it was installed properly you can either test it with the command <code>$pixi run quarto --help</code>or go back to the .toml file and verify that Quarto has been added as a dependency.
 </p></li>
-<li>No that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
+<li>Now that you have added a tool, yet another file has been added to your project folder: pixi.lock.<br>
 
 <p style="margin-left:2em;">
 -&gt; .lock tracks everything pixi actually did to install your tool, the channels, where the packages were downloaded from, licences etc.
 </p>
-<strong>!OBS: DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</strong></li>
+<strong>Note:</strong> DON’T EVER DELETE .toml OR .lock. THIS WILL CAUSE YOUR ENVIRONMENT TO BREAK!</li>
 <li>To use your tool you can use:<br>
 <code>$pixi run quarto --help</code><br>
-<strong>Pro-Tip:</strong> You can also enter the environment using <code>$pixi shell</code>. This allows you to forget about pixi and just run your commands as “normally” e.g.&nbsp;`$quarto –help. To leave it again, just type exit into the commandline and press enter.</li>
+<strong>Pro Tip:</strong> You can also enter the environment using <code>$pixi shell</code>. This allows you to forget about pixi and just run your commands “normally” e.g.&nbsp;`$quarto –help. To leave it again, just type exit into the command line and press enter.</li>
 </ol>
 </section>
 <section id="container-images" class="level4">
 <h4 class="anchored" data-anchor-id="container-images">Container images</h4>
-<p>To ensure that your analysis are easily reproducible, indepentent of when and where they are run you can use container images. These are containers that have been created by other people. Here we are using Apptainer as a container, as it is already installed on the course server, however Docker was also recommended. Two common platforms to download container images from are Dockerhub and Seqera.</p>
+<p>To ensure that your analysis are easily reproducible, indepentent of when and where they are run you can use container images. These, are containers that have been created by other people. Here, we are using Apptainer as a container, as it is already installed on the course server, however Docker was also recommended. Two common platforms to download container images from are Dockerhub and Seqera.</p>
 <ol type="1">
 <li>Dockerhub provides the first tool that we want to install: VCFtool, a software created for manipulation and quering of VCF files. It’s like a Swiss Army knife for VCF files - filter, summerize, analyze qenetic/sequencing data. To install it use:<br>
 <code>$apptainer pull vcftools_0.1.16-1.sif docker://biocontainers/vcftools:v0.1.16-1-deb_cv1</code>
 <p style="margin-left:2em;">
--&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is te dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.
+-&gt; apptainer is the software that is called, pull is the command to download/fetch something. “vcftools_0.1.16.1.sif” is the name of the container image. docker:// is the dockerhub registry that we are pulling our software from. “biocontainers/vcftools…” is the user profile that created the container and the name of the container you want to use.
 </p></li>
-<li>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those reposetories. Change the Container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</li>
-<li>Click on get Container, then copy paste the text from the website to the your system:<br>
+<li>Another platform for container images is Seqera. This platform is a little different from dockerhub since it does not provide container images that have been uploaded by other users but rather they build them as you request them, by using bioconda, conda-forge and pypi. Thus, the software that you want to use has to be present in one of those repository. Change the container settings on their website from Docker to Singularity and search for bioconda::vcftools=0.1.17.</li>
+<li>Click on get container, then copy paste the text from the website to your system:<br>
 <code>$apptainer pull fastqc:0.12.1.sif oras://community.wave.seqera.io/library/vcftools:0.1.17--b541aa8d9f9213f9</code>
 <p style="margin-left:2em;">
 oras is used, as this is the registry that is being pulled from in this case
 </p>
-Here, we are pulling from the oras registry rather then docker which is why we use oras:// isntead.</li>
+Here, we are pulling from the oras registry rather then docker which is why we use oras:// instead.</li>
 <li>To run use: <code>$apptainer exec fastqc:0.12.1.sif vcftools --version</code></li>
 </ol>
 
@@ -384,23 +383,19 @@ Here, we are pulling from the oras registry rather then docker which is why we u
 
 
 
-<div class="quarto-figure quarto-figure-center" style="float:right; width:45%; margin:0 0 1rem 1rem;">
-<figure class="figure">
-<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/quarto-blogs/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg" class="img-fluid figure-img"></p>
-<figcaption>Getting started</figcaption>
-</figure>
-</div>
-<p>First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options howe Second, add your text and adjust the title etc. In short: make your entry. To check inbetween you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.</p>
+<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/quarto-blogs/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"></p>
+<p>First, create a new folder for a new blog entry. Then create an index.qmd file within that folder. This is going to be where you insert your blog entery. You can add title, author, date and assign a category. There are more options.<br>
+Second, add your text and adjust the title etc. In short: make your entry. To check in between you can click the preview/rendering button next to the file name or press shift + command + K to get a preview of the updates you made in the webview.</p>
 <strong>Pro Tip: </strong>To make paragraphs end the line with two spaces.
 <p style="margin-left:2em;">
 For an indentation try <code>&lt;p style="margin-left:2em;"&gt; Your indented text &lt;/p&gt;</code>
 </p>
 <hr>
-<p>To actually safe and publish go into the Terminal again and<br>
+<p>To actually save and publish go into the terminal again and<br>
 <code>$git add --all</code><br>
 <code>$git commit -m "Remember to leave a little comment of what the changes that you made were"</code><br>
 <code>$git push origin main</code><br>
-In case of this error: “Updates were rejected because the remote contains work that you do hint: not have locally. This is usually caused by another repository pushing” try:<br>
+In case of this error: “Updates were rejected because the remote contains work that you do | hint: not have locally. This is usually caused by another repository pushing” try:<br>
 <code>$git pull origin main</code> This should merge the remote updates with your local copy, then try push again.<br>
 <code>$git push origin main</code>.</p>
 <p>And there you go - Your first Quarto Blog Entry!</p>
