@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/ggplot2/index.html",
       "/posts/nextflow-introduction/index.html",
       "/posts/Quality-control/index.html",
       "/posts/pixi-environment-containers/index.html",

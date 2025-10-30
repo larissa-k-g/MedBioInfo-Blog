@@ -5,14 +5,35 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Applied-Bioinfo-Blog</title>
+<title>Applied Bioinformatics Blog</title>
 <link>https://larissa-k-g.github.io/MedBioInfo-Blog/</link>
 <atom:link href="https://larissa-k-g.github.io/MedBioInfo-Blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog on getting started with bioinformatics</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Wed, 08 Oct 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 10 Oct 2025 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>Getting started with nextflow</title>
+  <title>ggplot for data visualization</title>
+  <dc:creator>Larissa Kahnwald</dc:creator>
+  <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/ggplot2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://larissa-k-g.github.io/MedBioInfo-Blog/posts/ggplot2/deng-xiang--WXQm_NTK0U-unsplash.jpg" class="img-fluid" style="float:right; width:45%; margin:0 0 1rem 1rem;"><br>
+A central part of the work as a researcher is to present your findings in an approachable and easily understandable way, to your peers, but also to the public. No matter to whom you are going to talk about your research or where you are going to publish it, you will want to visualize your data. And while there are many tools to choice from a R studios provides a very versitile one called “ggplot”. ggplot is like a swiss knive when it comes to generating plots and graphs. Anything from simple dot plots to complex heatmaps and scatterplots can be done using ggplot. To learn the basic syntax and get started with the basics you can follow this tutorial by Roy Francis at the National Bioinformatics Infrastructure Sweden.<br>
+<iframe src="https://nbisweden.github.io/raukr-2023/labs/ggplot/" width="100%" height="500" style="border: 1px solid #ccc; border-radius: 10px;"> </iframe></p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/ggplot2/</guid>
+  <pubDate>Fri, 10 Oct 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Getting started with nextflow and nf-core</title>
   <dc:creator>Larissa Kahnwald</dc:creator>
   <link>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/nextflow-introduction/</link>
   <description><![CDATA[ 
@@ -103,7 +124,15 @@ Since this can take up a lot of space you should clean the chached results and t
 <code>$pixi run nextflow clean</code><br>
 or also clean all previous runs, before running it again:<br>
 <code>$pixi run nextflow clean -before &lt;RUN NAME&gt; -f</code></p>
-<p><strong>Pro Tip: </strong><a href="https://nf-co.re">Nf-core</a> provides different modules to put in your pipeline and even whole pipelines that you can adjust to your needs.</p>
+</section>
+<section id="nf-core" class="level4">
+<h4 class="anchored" data-anchor-id="nf-core">nf-core</h4>
+<p>nf-core is a community where nexflow modules and piplines a being shared, maintained and developped. It offers a variety of different piplines. However, you should always try to understand if they are relevant to your project and if the process matches what you understand it to be, rather then blindly apply them for your data processing. Understanding them does not only secure that they are suited to be applied in your procesing, but you ca also optimize them to your needs.<br>
+You can also seek help at the weekly online helpdesk, view training material and get tips and tricks on proper documentation and development.<br>
+Each website on a pipeline is set up with a “usage” tap which describes the piplines function and the input file. Under “Parameters” details to set up the pipline are given. The Output tap can help to interpret the produced output. To add nf-core pipelines to your process start by installing it to your environment, together with nextflow:<br>
+<code>$ pixi add nextflow nf-core</code><br>
+You can then run differnt piplines by referencing their location at nf-core:<br>
+<code>$pixi run nextflow run nf-core/sarek -profile test --outdir sarek_test -c server.config</code> In this example the Sarek pipeline was used, a test profile was used which uses build-in test data, the results will be safed in a directory called sarek_test. The configuration file’s name and location for the server is defined with option -c.&nbsp;</p>
 
 
 </section>
@@ -111,7 +140,7 @@ or also clean all previous runs, before running it again:<br>
  ]]></description>
   <category>news</category>
   <guid>https://larissa-k-g.github.io/MedBioInfo-Blog/posts/nextflow-introduction/</guid>
-  <pubDate>Wed, 08 Oct 2025 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 09 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Quality control</title>
